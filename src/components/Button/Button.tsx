@@ -3,9 +3,10 @@ import * as React from 'react';
 
 type ButtonProps = {
     title: string
+    onClick?: () => void
 };
-export const Button = ({title}: ButtonProps) => {
+export const Button = ({title, onClick}: ButtonProps) => {
     return (
-        <button>{title}</button>
+        <button onClick={onClick}>{title}</button>
     );
 };

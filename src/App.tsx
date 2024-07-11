@@ -39,6 +39,11 @@ function App() {
         setTasks([{id: v1(), title, isDone: false}, ...tasks])
     }
 
+    //Изменение статуса таски
+    const changeTaskStatus = (taskId: string, isDone: boolean) => {
+        setTasks(tasks.map(t => t.id === taskId ? {...t, isDone} : t))
+    }
+
     // Создаем копию для филтрации
     let filteredTasks = tasks
     if (filter === 'active') {
@@ -58,8 +63,10 @@ function App() {
             <Todolist title={'What to learn'}
                       tasks={filteredTasks}
                       removeTask={removeTask}
+                      filter={filter}
                       filterTasks={filterTasks}
                       addTask={addTask}
+                      changeTaskStatus={changeTaskStatus}
             />
             {/*<Todolist title={'What to buy'} tasks={tasks}/>*/}
         </div>

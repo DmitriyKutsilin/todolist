@@ -10,16 +10,21 @@ type TodolistProps = {
     removeTask: (taskId: string) => void
     filterTasks: (filter: FilterType) => void
     addTask: (title: string) => void
+    changeTaskStatus: (taskId: string, isDone: boolean) => void
+    filter: FilterType
 };
 export const Todolist = ({
                              title,
                              tasks,
                              removeTask,
                              filterTasks,
-                             addTask
+                             filter,
+                             addTask,
+                             changeTaskStatus
                          }: TodolistProps) => {
 
     const [taskTitle, setTaskTitle] = useState<string>('')
+    const [error, setError] = useState<string | null>(null)
 
     const changeTaskTitleHandler = (e: ChangeEvent<HTMLInputElement> ) => {
         setTaskTitle(e.currentTarget.value)
@@ -28,11 +33,14 @@ export const Todolist = ({
     const addTaskHandler = () => {
         if (taskTitle.trim()) {
             addTask(taskTitle)
+        } else {
+            setError('Title is required!')
         }
         setTaskTitle('')
     }
 
     const addTaskOnKeyDownHandler = (e: KeyboardEvent<HTMLInputElement> ) => {
+        setError(null)
         if (e.key === 'Enter') {
             addTaskHandler()
         }
@@ -42,9 +50,15 @@ export const Todolist = ({
         <div>
             <h3>{title}</h3>
             <div>
-                <input value={taskTitle} onChange={changeTaskTitleHandler} onKeyDown={addTaskOnKeyDownHandler}/>
+                <input className={error ? 'error' : ''}
+                    value={taskTitle}
+                       onChange={changeTaskTitleHandler}
+                       onKeyDown={addTaskOnKeyDownHandler}/>
                 <Button title={'+'} onClick={addTaskHandler}/>
             </div>
+            {
+                error && <div className={'error-message'}>{error}</div>
+            }
             <ul>
                 {
                     tasks.length === 0
@@ -54,9 +68,14 @@ export const Todolist = ({
                                 removeTask(task.id)
                             }
 
+                            const onChangeStatusHandler = (e:  ChangeEvent<HTMLInputElement>) => {
+                                const isDone = e.currentTarget.checked
+                                changeTaskStatus(task.id, isDone)
+                            }
+
                             return (
-                                <li key={task.id}>
-                                    <input type="checkbox" checked={task.isDone}/>
+                                <li key={task.id} className={task.isDone ? 'is-done' : ''}>
+                                    <input type="checkbox" checked={task.isDone} onChange={onChangeStatusHandler}/>
                                     <span>{task.title}</span>
                                     <Button title={'x'} onClick={removeTaskHandler}/>
                                 </li>
@@ -65,9 +84,15 @@ export const Todolist = ({
                 }
             </ul>
             <div>
-                <Button title={'All'} onClick={() => filterTasks('all')}/>
-                <Button title={'Active'} onClick={() => filterTasks('active')}/>
-                <Button title={'Completed'} onClick={() => filterTasks('completed')}/>
+                <Button className={filter === 'all' ? 'active-filter' : ''}
+                        title={'All'}
+                        onClick={() => filterTasks('all')}/>
+                <Button className={filter === 'active' ? 'active-filter' : ''}
+                        title={'Active'}
+                        onClick={() => filterTasks('active')}/>
+                <Button className={filter === 'completed' ? 'active-filter' : ''}
+                        title={'Completed'}
+                        onClick={() => filterTasks('completed')}/>
             </div>
         </div>
     );

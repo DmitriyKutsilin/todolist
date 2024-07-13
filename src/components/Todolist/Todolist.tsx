@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {FilterType, TaskType} from "../../App";
 import {Button} from "../Button/Button";
-import {ChangeEvent, useState, KeyboardEvent} from "react";
+import {ChangeEvent} from "react";
 import {AddItemForm} from "../AddItemForm/AddItemForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 

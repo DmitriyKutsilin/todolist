@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from "./components/Todolist/Todolist";
 import {v1} from "uuid";
+import {AddItemForm} from "./components/AddItemForm/AddItemForm";
 
 export type TaskType = {
     id: string
@@ -79,8 +80,28 @@ function App() {
         setTasks({...tasks})
     }
 
+    //Добавление нового тудулиста
+    const addTodolist = (title: string) => {
+        const newTodolistId = v1()
+        const newTodolist: TodolistType = {id: newTodolistId, title, filter: 'all'}
+        setTodolists([newTodolist, ...todolists])
+        setTasks({...tasks, [newTodolistId]: []})
+    }
+
+    const updateTask = (todolistId: string, taskId: string, title: string) => {
+        setTasks({
+            ...tasks,
+            [todolistId]: tasks[todolistId].map(t => t.id === taskId ? {...t, title} : t)
+        })
+    }
+
+    const updateTodolist = (todolistId: string, title: string) => {
+        setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, title} : tl))
+    }
+
     return (
         <div className="App">
+            <AddItemForm addItem={addTodolist}/>
             {
                 todolists.map(tl => {
                     const todolistTasks = tasks[tl.id]
@@ -103,19 +124,12 @@ function App() {
                                   addTask={addTask}
                                   changeTaskStatus={changeTaskStatus}
                                   removeTodolist={removeTodolist}
+                                  updateTask={updateTask}
+                                  updateTodolist={updateTodolist}
                         />
                     )
                 })
             }
-
-            {/*<Todolist title={'What to learn'}*/}
-            {/*          tasks={filteredTasks}*/}
-            {/*          removeTask={removeTask}*/}
-            {/*          filter={filter}*/}
-            {/*          filterTasks={filterTasks}*/}
-            {/*          addTask={addTask}*/}
-            {/*          changeTaskStatus={changeTaskStatus}*/}
-            {/*/>*/}
         </div>
     );
 }

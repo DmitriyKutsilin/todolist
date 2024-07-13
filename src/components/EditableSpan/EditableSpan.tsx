@@ -9,18 +9,27 @@ type Props = {
 export const EditableSpan = ({value, onChange}: Props) => {
     const [editMode, setEditMode] = useState(false)
     const [title, setTitle] = useState(value)
+    // const [error, setError] = useState<string | null>(null)
 
     const changeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value)
+        // setError(null)
+        setTitle(e.currentTarget.value.trim())
     }
 
     const activateEditMode = () => {
-        setEditMode(!editMode)
+        setEditMode(true)
     }
 
     const deactivateEditMode = () => {
-        setEditMode(!editMode)
-        onChange(title)
+        if (title.trim()) {
+            setEditMode(false)
+            onChange(title)
+        }
+        // else {
+        //     // setTitle(value)
+        //     // setEditMode(false)
+        //     setError('Title is required!')
+        // }
     }
 
     const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -33,11 +42,19 @@ export const EditableSpan = ({value, onChange}: Props) => {
         <>
             {
                 editMode
-                    ? <input value={title}
-                             onBlur={deactivateEditMode}
-                             onChange={changeTitleHandler}
-                             onKeyDown={onKeyDownHandler}
-                             autoFocus/>
+                    ? <>
+                        <input
+                            // className={error ? 'error' : ''}
+                            value={title}
+                            onBlur={deactivateEditMode}
+                            onChange={changeTitleHandler}
+                            onKeyDown={onKeyDownHandler}
+                            autoFocus/>
+                        {/*{*/}
+                        {/*    error && <div className={'error-message'}>{error}</div>*/}
+                        {/*}*/}
+                    </>
+
                     : <span onDoubleClick={activateEditMode}>{value}</span>
             }
         </>

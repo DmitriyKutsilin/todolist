@@ -3,6 +3,12 @@ import './App.css';
 import {Todolist} from "./components/Todolist/Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./components/AddItemForm/AddItemForm";
+import AppBar from '@mui/material/AppBar/AppBar';
+import Toolbar from '@mui/material/Toolbar/Toolbar';
+import IconButton from '@mui/material/IconButton/IconButton';
+import Button from '@mui/material/Button/Button';
+import MenuIcon from '@mui/icons-material/Menu';
+import Paper from '@mui/material/Paper';
 
 export type TaskType = {
     id: string
@@ -101,35 +107,52 @@ function App() {
 
     return (
         <div className="App">
-            <AddItemForm addItem={addTodolist}/>
-            {
-                todolists.map(tl => {
-                    const todolistTasks = tasks[tl.id]
-                    let filteredTasks = todolistTasks
-                    if (tl.filter === 'active') {
-                        filteredTasks = todolistTasks.filter(t => !t.isDone)
-                    }
-                    if (tl.filter === 'completed') {
-                        filteredTasks = todolistTasks.filter(t => t.isDone)
-                    }
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton color="inherit">
+                        <MenuIcon/>
+                    </IconButton>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
 
-                    return (
-                        <Todolist key={tl.id}
-                                  todolistId={tl.id}
-                                  title={tl.title}
-                                  tasks={filteredTasks}
-                                  removeTask={removeTask}
-                                  filter={tl.filter}
-                                  changeFilter={changeFilter}
-                                  addTask={addTask}
-                                  changeTaskStatus={changeTaskStatus}
-                                  removeTodolist={removeTodolist}
-                                  updateTask={updateTask}
-                                  updateTodolist={updateTodolist}
-                        />
-                    )
-                })
-            }
+            <div className={"addItemForm"}>
+                <AddItemForm addItem={addTodolist} label={'New todolist'}/>
+            </div>
+
+            <div className={"todolistsFlexbox"}>
+                {
+                    todolists.map(tl => {
+                        const todolistTasks = tasks[tl.id]
+                        let filteredTasks = todolistTasks
+                        if (tl.filter === 'active') {
+                            filteredTasks = todolistTasks.filter(t => !t.isDone)
+                        }
+                        if (tl.filter === 'completed') {
+                            filteredTasks = todolistTasks.filter(t => t.isDone)
+                        }
+
+                        return (
+                            <Paper elevation={3} className={"paper"}>
+                                <Todolist key={tl.id}
+                                          todolistId={tl.id}
+                                          title={tl.title}
+                                          tasks={filteredTasks}
+                                          removeTask={removeTask}
+                                          filter={tl.filter}
+                                          changeFilter={changeFilter}
+                                          addTask={addTask}
+                                          changeTaskStatus={changeTaskStatus}
+                                          removeTodolist={removeTodolist}
+                                          updateTask={updateTask}
+                                          updateTodolist={updateTodolist}
+                                />
+                            </Paper>
+                        )
+                    })
+                }
+            </div>
+
         </div>
     );
 }

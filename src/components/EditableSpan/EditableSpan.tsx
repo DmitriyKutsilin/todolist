@@ -1,19 +1,21 @@
 // @flow
+import TextField from '@mui/material/TextField/TextField';
 import * as React from 'react';
 import {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type Props = {
     value: string
     onChange: (title: string) => void
+    className?: string
 };
-export const EditableSpan = ({value, onChange}: Props) => {
+export const EditableSpan = ({value, onChange, className}: Props) => {
     const [editMode, setEditMode] = useState(false)
     const [title, setTitle] = useState(value)
     // const [error, setError] = useState<string | null>(null)
 
     const changeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
         // setError(null)
-        setTitle(e.currentTarget.value.trim())
+        setTitle(e.currentTarget.value)
     }
 
     const activateEditMode = () => {
@@ -43,8 +45,12 @@ export const EditableSpan = ({value, onChange}: Props) => {
             {
                 editMode
                     ? <>
-                        <input
+                        <TextField
                             // className={error ? 'error' : ''}
+
+                            // inputProps={{size: title.length}}
+                            // sx={{maxWidth: 'fit-content', overflow: "none"}}
+                            variant="standard"
                             value={title}
                             onBlur={deactivateEditMode}
                             onChange={changeTitleHandler}
@@ -55,7 +61,7 @@ export const EditableSpan = ({value, onChange}: Props) => {
                         {/*}*/}
                     </>
 
-                    : <span onDoubleClick={activateEditMode}>{value}</span>
+                    : <span className={className} onDoubleClick={activateEditMode}>{value}</span>
             }
         </>
     );

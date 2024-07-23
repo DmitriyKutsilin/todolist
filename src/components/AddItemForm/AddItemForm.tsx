@@ -2,11 +2,16 @@
 import * as React from 'react';
 import {Button} from "../Button/Button";
 import {ChangeEvent, KeyboardEvent, useState} from "react";
+import IconButton from '@mui/material/IconButton/IconButton';
+import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
+import TextField from '@mui/material/TextField/TextField';
+
 
 type Props = {
     addItem: (title: string) => void
+    label: string
 };
-export const AddItemForm = ({addItem}: Props) => {
+export const AddItemForm = ({addItem, label}: Props) => {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string | null>(null)
 
@@ -32,14 +37,28 @@ export const AddItemForm = ({addItem}: Props) => {
 
     return (
         <div>
-            <input className={error ? 'error' : ''}
-                   value={title}
-                   onChange={changeItemTitleHandler}
-                   onKeyDown={addItemOnKeyDownHandler}/>
-            <Button title={'+'} onClick={addItemHandler}/>
-            {
-                error && <div className={'error-message'}>{error}</div>
-            }
+            {/*<input className={error ? 'error' : ''}*/}
+            {/*       value={title}*/}
+            {/*       onChange={changeItemTitleHandler}*/}
+            {/*       onKeyDown={addItemOnKeyDownHandler}/>*/}
+            <TextField
+                size="small"
+                error={!!error}
+                helperText={error}
+                id="outlined"
+                variant="outlined"
+                label={label}
+                value={title}
+                onChange={changeItemTitleHandler}
+                onKeyDown={addItemOnKeyDownHandler}
+            />
+            <IconButton size="medium" color="primary" onClick={addItemHandler}>
+                <AddCircleOutline fontSize="medium"/>
+            </IconButton>
+            {/*<Button title={'+'} onClick={addItemHandler}/>*/}
+            {/*{*/}
+            {/*    error && <div className={'error-message'}>{error}</div>*/}
+            {/*}*/}
         </div>
 
     );

@@ -1,10 +1,5 @@
 .App {
-  padding: 30px;
-  display: flex;
-}
-
-.App > div {
-  margin-right: 50px;
+  font-family: Roboto, sans-serif;
 }
 
 .error {
@@ -23,7 +18,59 @@
   opacity: 0.5;
 }
 
+.todolistsFlexbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin: 0 50px;
+}
+
+.todolist {
+  min-width: 250px;
+  max-width: 250px;
+  word-break: break-all;
+}
+
+.todolistHeader {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 500;
+}
+
 .todolist-title-container {
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
 }
+
+.taskCenter {
+  display: flex;
+  align-items: center;
+}
+
+.addItemForm {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.paper {
+  padding: 15px;
+  height: 100%;
+}
+
+.filterButtonsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*ul {*/
+/*  list-style-type: none;*/
+/*  padding: 0;*/
+/*}*/
+
+/*ul > li {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*}*/

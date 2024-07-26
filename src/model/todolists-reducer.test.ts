@@ -19,7 +19,9 @@ test('correct todolist should be removed', () => {
     ]
 
     // 2. Действие
-    const endState = todolistsReducer(startState, removeTodolistAC(todolistId1))
+    const action = removeTodolistAC(todolistId1)
+
+    const endState = todolistsReducer(startState, action)
 
     // 3. Проверяем, что наши действия (изменения state) соответствуют ожиданию
     // в массиве останется один тудулист
@@ -38,11 +40,12 @@ test('correct todolist should be added', () => {
     ]
 
     const newTitle = 'New todolist'
+    const action = addTodolistAC(newTitle)
 
-    const endState = todolistsReducer(startState, addTodolistAC(newTitle))
+    const endState = todolistsReducer(startState, action)
 
     expect(endState.length).toBe(3)
-    expect(endState[2].title).toBe(newTitle)
+    expect(endState[2].title).toBe(action.payload.title)
 })
 
 test('correct todolist should change its name', () => {
@@ -55,11 +58,12 @@ test('correct todolist should change its name', () => {
     ]
 
     const newTitle = 'New title'
+    const action = ChangeTodolistTitleAC(todolistId2, newTitle)
 
-    const endState = todolistsReducer(startState, ChangeTodolistTitleAC(todolistId2, newTitle))
+    const endState = todolistsReducer(startState, action)
 
     expect(endState[0].title).toBe('What to learn')
-    expect(endState[1].title).toBe(newTitle)
+    expect(endState[1].title).toBe(action.payload.title)
 })
 
 test('correct filter of todolist should be changed', () => {
@@ -72,9 +76,10 @@ test('correct filter of todolist should be changed', () => {
     ]
 
     const filterValue: FilterType = "completed"
+    const action = ChangeTodolistFilterAC(todolistId2, filterValue)
 
-    const endState = todolistsReducer(startState, ChangeTodolistFilterAC(todolistId2, filterValue))
+    const endState = todolistsReducer(startState, action)
 
     expect(endState[0].filter).toBe('all')
-    expect(endState[1].filter).toBe(filterValue)
+    expect(endState[1].filter).toBe(action.payload.filter)
 })

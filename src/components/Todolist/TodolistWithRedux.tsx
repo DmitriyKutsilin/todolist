@@ -11,49 +11,47 @@ import Checkbox from '@mui/material/Checkbox/Checkbox';
 import List from '@mui/material/List/List';
 import ListItem from '@mui/material/ListItem/ListItem';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../state/store";
+import {TasksStateType, TodolistType} from "../../AppWithRedux";
+import {changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from "../../state/todolists-reducer";
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "../../state/tasks-reducer";
 
 type TodolistProps = {
-    todolistId: string
-    title: string
-    tasks: TaskType[]
-    removeTask: (todolistId: string, taskId: string) => void
-    changeFilter: (todolistId: string, filter: FilterType) => void
-    addTask: (todolistId: string, title: string) => void
-    changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
-    removeTodolist: (todolistId: string) => void
-    updateTask: (todolistId: string, taskId: string, title: string) => void
-    updateTodolist: (todolistId: string, title: string) => void
-    filter: FilterType
+    todolist: TodolistType
 };
-export const Todolist = ({
-                             todolistId,
-                             title,
-                             tasks,
-                             removeTask,
-                             changeFilter,
-                             filter,
-                             addTask,
-                             changeTaskStatus,
-                             removeTodolist,
-                             updateTask,
-                             updateTodolist
-                         }: TodolistProps) => {
+export const TodolistWithRedux = ({ todolist }: TodolistProps) => {
+    const {id, title, filter} = todolist
+
+    let tasks = useSelector<AppRootStateType, TaskType[]>(state => state.tasks[id])
+    const dispatch = useDispatch()
+
+    if (filter === 'active') {
+        tasks = tasks.filter(t => !t.isDone)
+    }
+    if (filter === 'completed') {
+        tasks = tasks.filter(t => t.isDone)
+    }
 
 
     const changeFilterTasksHandler = (filter: FilterType) => {
-        changeFilter(todolistId, filter)
+        dispatch(changeTodolistFilterAC(id, filter))
+        // changeFilter(todolistId, filter)
     }
 
     const removeTodolistHandler = () => {
-        removeTodolist(todolistId)
+        dispatch(removeTodolistAC(id))
+        // removeTodolist(todolistId)
     }
 
     const addTaskCallback = (title: string) => {
-        addTask(todolistId, title)
+        dispatch(addTaskAC(id, title))
+        // addTask(todolistId, title)
     }
 
     const updateTodolistHandler = (title: string) => {
-        updateTodolist(todolistId, title)
+        dispatch(changeTodolistTitleAC(id, title))
+        // updateTodolist(todolistId, title)
     }
 
     return (
@@ -72,16 +70,19 @@ export const Todolist = ({
                         ? <p>Тасок нет</p>
                         : tasks.map(task => {
                             const removeTaskHandler = () => {
-                                removeTask(todolistId, task.id)
+                                dispatch(removeTaskAC(id, task.id))
+                                // removeTask(todolistId, task.id)
                             }
 
                             const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
                                 const isDone = e.currentTarget.checked
-                                changeTaskStatus(todolistId, task.id, isDone)
+                                dispatch(changeTaskStatusAC(id, task.id, isDone))
+                                // changeTaskStatus(todolistId, task.id, isDone)
                             }
 
                             const updateTaskHandler = (title: string) => {
-                                updateTask(todolistId, task.id, title)
+                                dispatch(changeTaskTitleAC(id, task.id, title))
+                                // updateTask(todolistId, task.id, title)
                             }
 
                             return (

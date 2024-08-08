@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
-import {Button} from "../Button/Button";
-import {ChangeEvent, KeyboardEvent, useState} from "react";
+import {ChangeEvent, KeyboardEvent, memo, useState} from "react";
 import IconButton from '@mui/material/IconButton/IconButton';
 import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
 import TextField from '@mui/material/TextField/TextField';
@@ -11,7 +10,8 @@ type Props = {
     addItem: (title: string) => void
     label: string
 };
-export const AddItemForm = ({addItem, label}: Props) => {
+export const AddItemForm = memo(({addItem, label}: Props) => {
+
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string | null>(null)
 
@@ -29,7 +29,9 @@ export const AddItemForm = ({addItem, label}: Props) => {
     }
 
     const addItemOnKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
+        if (error) {
+            setError(null)
+        }
         if (e.key === 'Enter') {
             addItemHandler()
         }
@@ -62,4 +64,4 @@ export const AddItemForm = ({addItem, label}: Props) => {
         </div>
 
     );
-};
+});

@@ -1,14 +1,14 @@
 // @flow
 import TextField from '@mui/material/TextField/TextField';
 import * as React from 'react';
-import {ChangeEvent, KeyboardEvent, useState} from "react";
+import {ChangeEvent, KeyboardEvent, memo, useState} from "react";
 
 type Props = {
     value: string
     onChange: (title: string) => void
     className?: string
 };
-export const EditableSpan = ({value, onChange, className}: Props) => {
+export const EditableSpan = memo(({value, onChange, className}: Props) => {
     const [editMode, setEditMode] = useState(false)
     const [title, setTitle] = useState(value)
     // const [error, setError] = useState<string | null>(null)
@@ -65,4 +65,4 @@ export const EditableSpan = ({value, onChange, className}: Props) => {
             }
         </>
     );
-};
+});

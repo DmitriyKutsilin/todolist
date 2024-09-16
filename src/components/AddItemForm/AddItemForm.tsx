@@ -6,11 +6,11 @@ import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
 import TextField from '@mui/material/TextField/TextField';
 
 
-type Props = {
+export type AddItemFormPropsType = {
     addItem: (title: string) => void
-    label: string
+    label?: string
 };
-export const AddItemForm = memo(({addItem, label}: Props) => {
+export const AddItemForm = memo(({addItem, label}: AddItemFormPropsType) => {
 
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string | null>(null)

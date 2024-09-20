@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import {FilterType, TaskType} from "../../AppWithRedux";
 import {ChangeEvent} from "react";
 import {AddItemForm} from "../AddItemForm/AddItemForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
@@ -13,12 +12,13 @@ import ListItem from '@mui/material/ListItem/ListItem';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";
-import {TasksStateType, TodolistType} from "../../AppWithRedux";
-import {changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from "../../state/todolists-reducer";
+import {FilterType, TodolistDomainType, changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from "../../state/todolists-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "../../state/tasks-reducer";
+import {TaskStatuses, TaskType} from '../../api/todolist-api';
+import {TaskWithRedux} from "../Task/TaskWithRedux";
 
 type TodolistProps = {
-    todolist: TodolistType
+    todolist: TodolistDomainType
 };
 export const TodolistWithRedux = ({ todolist }: TodolistProps) => {
     const {id, title, filter} = todolist
@@ -27,10 +27,10 @@ export const TodolistWithRedux = ({ todolist }: TodolistProps) => {
     const dispatch = useDispatch()
 
     if (filter === 'active') {
-        tasks = tasks.filter(t => !t.isDone)
+        tasks = tasks.filter(t => t.status === TaskStatuses.New)
     }
     if (filter === 'completed') {
-        tasks = tasks.filter(t => t.isDone)
+        tasks = tasks.filter(t => t.status === TaskStatuses.Completed)
     }
 
 
@@ -69,38 +69,38 @@ export const TodolistWithRedux = ({ todolist }: TodolistProps) => {
                     tasks.length === 0
                         ? <p>Тасок нет</p>
                         : tasks.map(task => {
-                            const removeTaskHandler = () => {
-                                dispatch(removeTaskAC(id, task.id))
-                                // removeTask(todolistId, task.id)
-                            }
-
-                            const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                                const isDone = e.currentTarget.checked
-                                dispatch(changeTaskStatusAC(id, task.id, isDone))
-                                // changeTaskStatus(todolistId, task.id, isDone)
-                            }
-
-                            const updateTaskHandler = (title: string) => {
-                                dispatch(changeTaskTitleAC(id, task.id, title))
-                                // updateTask(todolistId, task.id, title)
-                            }
-
-                            return (
-                                <ListItem key={task.id}
-                                          sx={{
-                                              p: 0,
-                                              justifyContent: "space-between",
-                                              opacity: task.isDone ? 0.5 : 1,
-                                          }}>
-                                    <div className="taskCenter">
-                                        <Checkbox size="medium" checked={task.isDone} onChange={onChangeStatusHandler}/>
-                                        <EditableSpan value={task.title} onChange={updateTaskHandler}></EditableSpan>
-                                    </div>
-                                    <IconButton size="medium" color="default" onClick={removeTaskHandler}>
-                                        <RemoveCircleOutlineIcon fontSize="inherit"/>
-                                    </IconButton>
-                                </ListItem>
-                            )
+                            return <TaskWithRedux task={task} todolistId={id}/>
+                            // const removeTaskHandler = () => {
+                            //     dispatch(removeTaskAC(id, task.id))
+                            //     // removeTask(todolistId, task.id)
+                            // }
+                            //
+                            // const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                            //     const isDone = e.currentTarget.checked
+                            //     dispatch(changeTaskStatusAC(id, task.id, isDone))
+                            //     // changeTaskStatus(todolistId, task.id, isDone)
+                            // }
+                            //
+                            // const updateTaskHandler = (title: string) => {
+                            //     dispatch(changeTaskTitleAC(id, task.id, title))
+                            //     // updateTask(todolistId, task.id, title)
+                            // }
+                            //
+                            // return (
+                            //     <ListItem key={task.id}
+                            //               sx={{
+                            //                   p: 0,
+                            //                   justifyContent: "space-between",
+                            //                   opacity: task.isDone ? 0.5 : 1,
+                            //               }}>
+                            //         <div className="taskCenter">
+                            //             <Checkbox size="medium" checked={task.isDone} onChange={onChangeStatusHandler}/>
+                            //             <EditableSpan value={task.title} onChange={updateTaskHandler}></EditableSpan>
+                            //         </div>
+                            //         <IconButton size="medium" color="default" onClick={removeTaskHandler}>
+                            //             <RemoveCircleOutlineIcon fontSize="inherit"/>
+                            //         </IconButton>
+                            //     </ListItem>
                         })
                 }
             </List>

@@ -4,7 +4,7 @@ import {EditableSpan} from "../EditableSpan/EditableSpan";
 import IconButton from "@mui/material/IconButton/IconButton";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import ListItem from "@mui/material/ListItem/ListItem";
-import {TaskType} from "../../App";
+import {TaskType} from "../../AppWithRedux";
 
 type TaskPropsType = {
     task: TaskType

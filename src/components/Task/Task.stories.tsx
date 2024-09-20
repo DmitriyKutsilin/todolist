@@ -3,7 +3,6 @@ import {fn} from '@storybook/test';
 import {action} from '@storybook/addon-actions'
 import * as React from "react";
 import {Task} from "./Task";
-import {TaskType} from "../../App";
 import {useState} from "react";
 
 

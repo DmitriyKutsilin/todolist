@@ -1,9 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import {fn} from '@storybook/test';
-import {action} from '@storybook/addon-actions'
 import * as React from "react";
-import {TaskType} from "../../App";
-import {useState} from "react";
+import {TaskType} from "../../AppWithRedux";
 import {TaskWithRedux} from "./TaskWithRedux";
 import {ReduxStoreProviderDecorator} from "../../state/ReduxStoreProviderDecorator";
 import {useSelector} from "react-redux";

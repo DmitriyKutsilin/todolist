@@ -1,4 +1,4 @@
-import {FilterType, TodolistType} from "../App";
+import {FilterType, TodolistType} from "../AppWithRedux";
 import {v1} from "uuid";
 
 export let todolistID1 = v1()

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {todolistApi, TodolistType} from "../api/todolist-api";
+import {todolistApi} from "../api/todolist-api";
 
 export default {
     title: 'TODOLIST-API'
@@ -33,7 +33,7 @@ export const UpdateTodolist = () => {
 
     useEffect(() => {
         const todolistTitle = 'UPDATED TODOLIST'
-        const todolistID = '53163a6b-cb32-4baa-a424-5c215aa66a1d'
+        const todolistID = '2603792a-cd3b-4320-9b85-339eade7e8f5'
         todolistApi.updateTodolist(todolistID, todolistTitle)
             .then(res => setState(res.data))
     }, []);

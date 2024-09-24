@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {memo, useCallback, useMemo} from 'react';
+import {memo, useCallback, useEffect, useMemo} from 'react';
 import {AddItemForm} from "../AddItemForm/AddItemForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import IconButton from '@mui/material/IconButton/IconButton';
@@ -10,6 +10,8 @@ import {ButtonWithMemo} from "../Button/ButtonWithMemo";
 import {Task} from "../Task/Task";
 import {FilterType} from '../../state/todolists-reducer';
 import {TaskStatuses, TaskType} from '../../api/todolist-api';
+import {useAppDispatch} from "../../state/store";
+import {fetchTasksTC} from "../../state/tasks-reducer";
 
 type TodolistProps = {
     todolistId: string
@@ -39,6 +41,12 @@ export const Todolist = memo(({
                               }: TodolistProps) => {
 
     console.log("todolist")
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(fetchTasksTC(todolistId))
+    }, []);
 
     const removeTodolistHandler = () => {
         removeTodolist(todolistId)

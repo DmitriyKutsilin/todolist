@@ -4,6 +4,7 @@ import './index.css';
 import AppWithRedux from "./AppWithRedux";
 import {Provider} from "react-redux";
 import {store} from "./state/store";
+import AppWithReduxWhole from "./AppWithReduxWhole";
 
 
 const root = ReactDOM.createRoot(

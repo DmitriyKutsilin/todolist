@@ -4,9 +4,8 @@ import {EditableSpan} from "../EditableSpan/EditableSpan";
 import IconButton from "@mui/material/IconButton/IconButton";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import ListItem from "@mui/material/ListItem/ListItem";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../state/store";
-import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "../../state/tasks-reducer";
+import {useAppDispatch} from "../../state/store";
+import {deleteTaskTC, updateTaskTC} from "../../state/tasks-reducer";
 import {TaskStatuses, TaskType} from '../../api/todolist-api';
 
 type TaskPropsType = {
@@ -18,22 +17,19 @@ export const TaskWithRedux = memo(({
                               task,
                               todolistId,
                           }: TaskPropsType) => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const removeTaskHandler = () => {
-        dispatch(removeTaskAC(todolistId, task.id))
-        // removeTask(todolistId, task.id)
+        dispatch(deleteTaskTC(todolistId, task.id))
     }
 
     const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const isDone = e.currentTarget.checked
-        dispatch(changeTaskStatusAC(todolistId, task.id, isDone ? TaskStatuses.Completed : TaskStatuses.New))
-        // changeTaskStatus(todolistId, task.id, isDone)
+        dispatch(updateTaskTC(todolistId, task.id, isDone ? {status: TaskStatuses.Completed} : {status: TaskStatuses.New}))
     }
 
     const updateTaskHandler = (title: string) => {
-        dispatch(changeTaskTitleAC(todolistId, task.id, title))
-        // updateTask(todolistId, task.id, title)
+        dispatch(updateTaskTC(todolistId, task.id, {title}))
     }
 
     return (

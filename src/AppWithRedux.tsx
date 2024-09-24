@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import {Todolist} from "./components/Todolist/Todolist";
 import {AddItemForm} from "./components/AddItemForm/AddItemForm";
@@ -9,18 +9,18 @@ import Button from '@mui/material/Button/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import Paper from '@mui/material/Paper';
 import {
-    FilterType,
-    addTodolistAC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC,
-    removeTodolistAC,
-    todolistsReducer, TodolistDomainType
+    createTodolistTC,
+    deleteTodolistTC,
+    fetchTodolistsTC,
+    FilterType,
+    TodolistDomainType,
+    updateTodolistTC
 } from "./state/todolists-reducer";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./state/store";
-import {TodolistWithRedux} from "./components/Todolist/TodolistWithRedux";
-import {TaskStatuses, TaskType } from './api/todolist-api';
+import {createTaskTC, deleteTaskTC, updateTaskTC} from "./state/tasks-reducer";
+import {useSelector} from "react-redux";
+import {AppRootStateType, useAppDispatch} from "./state/store";
+import {TaskStatuses, TaskType} from './api/todolist-api';
 
 export type TasksStateType = {
     [key: string]: TaskType[]
@@ -30,21 +30,26 @@ function AppWithRedux() {
 
     const todolists = useSelector<AppRootStateType, TodolistDomainType[]>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(fetchTodolistsTC())
+    }, []);
 
     // Удаление таски
     const removeTask = useCallback((todolistId: string, taskId: string) => {
-        dispatch(removeTaskAC(todolistId, taskId))
+        dispatch(deleteTaskTC(todolistId, taskId))
     }, [dispatch])
 
     //Добавление таски
     const addTask = useCallback((todolistId: string, title: string) => {
-        dispatch(addTaskAC(todolistId, title))
+        dispatch(createTaskTC(todolistId, title))
     }, [dispatch])
 
     //Изменение статуса таски
     const changeTaskStatus = useCallback((todolistId: string, taskId: string, status: TaskStatuses) => {
-        dispatch(changeTaskStatusAC(todolistId, taskId, status))
+        dispatch(updateTaskTC(todolistId, taskId, {status}))
+        // dispatch(changeTaskStatusAC(todolistId, taskId, status))
     }, [dispatch])
 
     // Фильтрация тасок
@@ -54,22 +59,21 @@ function AppWithRedux() {
 
     //Удаление тудулиста и тасок
     const removeTodolist = useCallback((todolistId: string) => {
-        const action = removeTodolistAC(todolistId)
-        dispatch(action)
+        dispatch(deleteTodolistTC(todolistId))
     }, [dispatch])
 
     //Добавление нового тудулиста
     const addTodolist = useCallback((title: string) => {
-        const action = addTodolistAC(title)
-        dispatch(action)
+        dispatch(createTodolistTC(title))
     }, [dispatch])
 
     const updateTask = useCallback((todolistId: string, taskId: string, title: string) => {
-        dispatch(changeTaskTitleAC(todolistId, taskId, title))
+        dispatch(updateTaskTC(todolistId, taskId, {title}))
+        // dispatch(changeTaskTitleAC(todolistId, taskId, title))
     }, [dispatch])
 
     const updateTodolist = useCallback((todolistId: string, title: string) => {
-        dispatch(changeTodolistTitleAC(todolistId, title))
+        dispatch(updateTodolistTC(todolistId, title))
     }, [dispatch])
 
     return (

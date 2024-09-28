@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {todolistApi, TodolistType} from "../api/todolist-api";
+import {todolistApi, TodolistType} from "../../api/todolist-api";
 import {Dispatch} from "redux";
 
 export let todolistID1 = v1()

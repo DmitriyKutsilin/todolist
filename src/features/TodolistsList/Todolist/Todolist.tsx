@@ -1,17 +1,17 @@
 // @flow
 import * as React from 'react';
 import {memo, useCallback, useEffect, useMemo} from 'react';
-import {AddItemForm} from "../AddItemForm/AddItemForm";
-import {EditableSpan} from "../EditableSpan/EditableSpan";
+import {AddItemForm} from "../../../components/AddItemForm/AddItemForm";
+import {EditableSpan} from "../../../components/EditableSpan/EditableSpan";
 import IconButton from '@mui/material/IconButton/IconButton';
 import List from '@mui/material/List/List';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import {ButtonWithMemo} from "../Button/ButtonWithMemo";
-import {Task} from "../Task/Task";
-import {FilterType} from '../../state/todolists-reducer';
-import {TaskStatuses, TaskType} from '../../api/todolist-api';
-import {useAppDispatch} from "../../state/store";
-import {fetchTasksTC} from "../../state/tasks-reducer";
+import {ButtonWithMemo} from "../../../components/Button/ButtonWithMemo";
+import {Task} from "./Task/Task";
+import {FilterType} from '../todolists-reducer';
+import {TaskStatuses, TaskType} from '../../../api/todolist-api';
+import {useAppDispatch} from "../../../app/store";
+import {fetchTasksTC} from "../tasks-reducer";
 
 type TodolistProps = {
     todolistId: string

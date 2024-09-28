@@ -1,23 +1,23 @@
 // @flow
 import * as React from 'react';
-import {AddItemForm} from "../AddItemForm/AddItemForm";
-import {EditableSpan} from "../EditableSpan/EditableSpan";
+import {AddItemForm} from "../components/AddItemForm/AddItemForm";
+import {EditableSpan} from "../components/EditableSpan/EditableSpan";
 import IconButton from '@mui/material/IconButton/IconButton';
 import Button from '@mui/material/Button/Button';
 import List from '@mui/material/List/List';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {useSelector} from "react-redux";
-import {AppRootStateType, useAppDispatch} from "../../state/store";
+import {AppRootStateType, useAppDispatch} from "../app/store";
 import {
     changeTodolistFilterAC,
     deleteTodolistTC,
     FilterType,
     TodolistDomainType,
     updateTodolistTC
-} from "../../state/todolists-reducer";
-import {createTaskTC, fetchTasksTC} from "../../state/tasks-reducer";
-import {TaskStatuses, TaskType} from '../../api/todolist-api';
-import {TaskWithRedux} from "../Task/TaskWithRedux";
+} from "../features/TodolistsList/todolists-reducer";
+import {createTaskTC, fetchTasksTC} from "../features/TodolistsList/tasks-reducer";
+import {TaskStatuses, TaskType} from '../api/todolist-api';
+import {TaskWithRedux} from "./TaskWithRedux";
 import {useEffect} from "react";
 
 type TodolistProps = {

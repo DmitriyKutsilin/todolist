@@ -1,13 +1,6 @@
-import React, {useCallback, useEffect} from 'react';
-import './App.css';
-import {Todolist} from "./components/Todolist/Todolist";
-import {AddItemForm} from "./components/AddItemForm/AddItemForm";
-import AppBar from '@mui/material/AppBar/AppBar';
-import Toolbar from '@mui/material/Toolbar/Toolbar';
-import IconButton from '@mui/material/IconButton/IconButton';
-import Button from '@mui/material/Button/Button';
-import MenuIcon from '@mui/icons-material/Menu';
-import Paper from '@mui/material/Paper';
+import React, {useCallback, useEffect} from "react";
+import {useSelector} from "react-redux";
+import {AppRootStateType, useAppDispatch} from "../../app/store";
 import {
     changeTodolistFilterAC,
     createTodolistTC,
@@ -16,18 +9,14 @@ import {
     FilterType,
     TodolistDomainType,
     updateTodolistTC
-} from "./state/todolists-reducer";
-import {createTaskTC, deleteTaskTC, updateTaskTC} from "./state/tasks-reducer";
-import {useSelector} from "react-redux";
-import {AppRootStateType, useAppDispatch} from "./state/store";
-import {TaskStatuses, TaskType} from './api/todolist-api';
+} from "./todolists-reducer";
+import {TasksStateType, createTaskTC, deleteTaskTC, updateTaskTC} from "./tasks-reducer";
+import {TaskStatuses} from "../../api/todolist-api";
+import {AddItemForm} from "../../components/AddItemForm/AddItemForm";
+import Paper from "@mui/material/Paper";
+import {Todolist} from "./Todolist/Todolist";
 
-export type TasksStateType = {
-    [key: string]: TaskType[]
-}
-
-function AppWithRedux() {
-
+export const TodolistsList: React.FC = () => {
     const todolists = useSelector<AppRootStateType, TodolistDomainType[]>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
     const dispatch = useAppDispatch()
@@ -77,16 +66,7 @@ function AppWithRedux() {
     }, [dispatch])
 
     return (
-        <div className="App">
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton color="inherit">
-                        <MenuIcon/>
-                    </IconButton>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-
+        <>
             <div className={"addItemForm"}>
                 <AddItemForm addItem={addTodolist} label={'New todolist'}/>
             </div>
@@ -114,9 +94,6 @@ function AppWithRedux() {
                     })
                 }
             </div>
-
-        </div>
-    );
+        </>
+    )
 }
-
-export default AppWithRedux;

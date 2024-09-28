@@ -1,5 +1,4 @@
 import {v1} from "uuid";
-import {TasksStateType} from "../AppWithRedux";
 import {
     AddTodolistActionType,
     RemoveTodolistActionType,
@@ -7,9 +6,9 @@ import {
     todolistID1,
     todolistID2
 } from "./todolists-reducer";
-import {TaskPriorities, TaskStatuses, TaskType, todolistApi, UpdateTaskModelType} from "../api/todolist-api";
+import {TaskPriorities, TaskStatuses, TaskType, todolistApi, UpdateTaskModelType} from "../../api/todolist-api";
 import {Dispatch} from "redux";
-import {AppRootStateType} from "./store";
+import {AppRootStateType} from "../../app/store";
 
 const initialState: TasksStateType = {
     // [todolistID1]: [
@@ -138,6 +137,10 @@ export const updateTaskTC = (todolistId: string, taskId: string, domainModel: Up
     }
 
 //TYPES
+export type TasksStateType = {
+    [key: string]: TaskType[]
+}
+
 export type UpdateTaskDomainModelType = {
     title?: string
     description?: string

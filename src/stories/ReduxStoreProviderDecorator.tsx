@@ -14,8 +14,8 @@ const rootReducer = combineReducers({
 
 const initialGlobalState: AppRootStateType = {
     todolists: [
-        {id: "todolistId1", title: "What to learn", filter: "all", addedDate: '', order: 0},
-        {id: "todolistId2", title: "What to buy", filter: "all", addedDate: '', order: 0}
+        {id: "todolistId1", title: "What to learn", filter: "all", addedDate: '', order: 0, entityStatus: "idle"},
+        {id: "todolistId2", title: "What to buy", filter: "all", addedDate: '', order: 0, entityStatus: "idle"}
     ],
     tasks: {
         ["todolistId1"]: [
@@ -28,7 +28,9 @@ const initialGlobalState: AppRootStateType = {
                 deadline: '',
                 todoListId: "todolistId1",
                 order: 0,
-                addedDate: ''},
+                addedDate: '',
+            entityStatus: 'idle'
+            },
             {id: v1(),
                 title: 'JS',
                 status: TaskStatuses.New,
@@ -38,7 +40,9 @@ const initialGlobalState: AppRootStateType = {
                 deadline: '',
                 todoListId: "todolistId1",
                 order: 0,
-                addedDate: ''},
+                addedDate: '',
+                entityStatus: 'idle'
+            },
         ],
         ["todolistId2"]: [
             {id: v1(),
@@ -50,7 +54,9 @@ const initialGlobalState: AppRootStateType = {
                 deadline: '',
                 todoListId: "todolistId2",
                 order: 0,
-                addedDate: ''},
+                addedDate: '',
+                entityStatus: 'idle',
+            },
             {id: v1(),
                 title: 'Sugar',
                 status: TaskStatuses.New,
@@ -60,8 +66,14 @@ const initialGlobalState: AppRootStateType = {
                 deadline: '',
                 todoListId: "todolistId2",
                 order: 0,
-                addedDate: ''},
+                addedDate: '',
+                entityStatus: 'idle'
+            },
         ],
+    },
+    app: {
+        status: 'idle',
+        error: null
     }
 };
 

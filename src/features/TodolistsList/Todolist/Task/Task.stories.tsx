@@ -5,6 +5,8 @@ import * as React from "react";
 import {useState} from "react";
 import {Task} from "./Task";
 import {TaskPriorities, TaskStatuses} from "../../../../api/todolist-api";
+import {TaskDomainType} from "../../tasks-reducer";
+import {RequestStatusType} from "../../../../app/app-reducer";
 
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
@@ -29,7 +31,8 @@ const meta = {
             deadline: '',
             todoListId: "todolistId1",
             order: 0,
-            addedDate: ''
+            addedDate: '',
+            entityStatus: 'idle',
         },
         todolistId: '190sfeesf3',
         removeTask: fn(),
@@ -42,9 +45,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const TaskIsNotDoneStory: Story = {
 
-};
 export const TaskIsDoneStory: Story = {
     args: {
         task: {
@@ -57,7 +58,8 @@ export const TaskIsDoneStory: Story = {
             deadline: '',
             todoListId: "todolistId1",
             order: 0,
-            addedDate: ''
+            addedDate: '',
+            entityStatus: 'idle'
         }
     }
 };
@@ -73,7 +75,8 @@ const ToggleTask = () => {
         deadline: '',
         todoListId: "todolistId1",
         order: 0,
-        addedDate: ''
+        addedDate: '',
+        entityStatus: 'idle' as RequestStatusType,
     })
 
     const changeTaskStatus = () => {

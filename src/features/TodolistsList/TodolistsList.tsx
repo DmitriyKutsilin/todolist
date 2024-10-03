@@ -74,11 +74,13 @@ export const TodolistsList: React.FC = () => {
             <div className={"todolistsFlexbox"}>
                 {
                     todolists.map(tl => {
+                        //TODO: заменить отдельные пропсы на tl
                         return (
                             <Paper key={tl.id} elevation={3} className={"paper"}>
                                 <Todolist
                                     todolistId={tl.id}
                                     title={tl.title}
+                                    entityStatus={tl.entityStatus}
                                     tasks={tasks[tl.id]}
                                     removeTask={removeTask}
                                     filter={tl.filter}

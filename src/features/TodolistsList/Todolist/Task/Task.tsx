@@ -5,9 +5,11 @@ import IconButton from "@mui/material/IconButton/IconButton";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import ListItem from "@mui/material/ListItem/ListItem";
 import {TaskStatuses, TaskType} from '../../../../api/todolist-api';
+import {RequestStatusType} from "../../../../app/app-reducer";
+import {TaskDomainType} from "../../tasks-reducer";
 
 type TaskPropsType = {
-    task: TaskType
+    task: TaskDomainType
     todolistId: string
     removeTask: (todolistId: string, taskId: string) => void
     changeTaskStatus: (todolistId: string, taskId: string, status: TaskStatuses) => void
@@ -21,6 +23,7 @@ export const Task = memo(({
                               changeTaskStatus,
                               updateTask
                           }: TaskPropsType) => {
+
     console.log("task")
     const removeTaskHandler = () => {
         removeTask(todolistId, task.id)
@@ -43,10 +46,17 @@ export const Task = memo(({
                 opacity: task.status === TaskStatuses.Completed ? 0.5 : 1,
             }}>
             <div className="taskCenter">
-                <Checkbox size="medium" checked={task.status === TaskStatuses.Completed} onChange={onChangeStatusHandler}/>
-                <EditableSpan value={task.title} onChange={updateTaskHandler}></EditableSpan>
+                <Checkbox size="medium"
+                          checked={task.status === TaskStatuses.Completed}
+                          onChange={onChangeStatusHandler}
+                          disabled={task.entityStatus === 'loading'}/>
+                <EditableSpan value={task.title}
+                              onChange={updateTaskHandler}
+                              disabled={task.entityStatus === 'loading'}></EditableSpan>
             </div>
-            <IconButton size="medium" color="default" onClick={removeTaskHandler}>
+            <IconButton size="medium" color="default"
+                        onClick={removeTaskHandler}
+                        disabled={task.entityStatus === 'loading'}>
                 <RemoveCircleOutlineIcon fontSize="inherit"/>
             </IconButton>
         </ListItem>

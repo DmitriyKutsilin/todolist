@@ -11,12 +11,14 @@ import {Task} from "./Task/Task";
 import {FilterType} from '../todolists-reducer';
 import {TaskStatuses, TaskType} from '../../../api/todolist-api';
 import {useAppDispatch} from "../../../app/store";
-import {fetchTasksTC} from "../tasks-reducer";
+import {TaskDomainType, fetchTasksTC} from "../tasks-reducer";
+import {RequestStatusType} from "../../../app/app-reducer";
 
 type TodolistProps = {
     todolistId: string
     title: string
-    tasks: TaskType[]
+    entityStatus: RequestStatusType
+    tasks: TaskDomainType[]
     removeTask: (todolistId: string, taskId: string) => void
     changeFilter: (todolistId: string, filter: FilterType) => void
     addTask: (todolistId: string, title: string) => void
@@ -29,6 +31,7 @@ type TodolistProps = {
 export const Todolist = memo(({
                                   todolistId,
                                   title,
+                                  entityStatus,
                                   tasks,
                                   removeTask,
                                   changeFilter,
@@ -84,17 +87,19 @@ export const Todolist = memo(({
     }, [todolistTasks, filter])
 
 
-
     return (
         <div className={'todolist'}>
             <div className={'todolist-title-container'}>
-                <EditableSpan className="todolistHeader" value={title} onChange={updateTodolistHandler}/>
-                <IconButton onClick={removeTodolistHandler}>
+                <EditableSpan className="todolistHeader"
+                              value={title}
+                              onChange={updateTodolistHandler}
+                              disabled={entityStatus === 'loading'}/>
+                <IconButton onClick={removeTodolistHandler} disabled={entityStatus === 'loading'}>
                     <DeleteForeverIcon/>
                 </IconButton>
                 {/*<Button title={'x'} onClick={removeTodolistHandler}/>*/}
             </div>
-            <AddItemForm addItem={addTaskCallback} label={'New task'}/>
+            <AddItemForm addItem={addTaskCallback} label={'New task'} disabled={entityStatus === 'loading'}/>
             <List>
                 {
                     todolistTasks.length === 0
@@ -116,19 +121,22 @@ export const Todolist = memo(({
                 <ButtonWithMemo size="small"
                                 variant={filter === 'all' ? 'outlined' : 'text'}
                                 color="primary"
-                                onClick={onAllClickHandler}>
+                                onClick={onAllClickHandler}
+                                disabled={entityStatus === 'loading'}>
                     All
                 </ButtonWithMemo>
                 <ButtonWithMemo size="small"
                                 variant={filter === 'active' ? 'outlined' : 'text'}
                                 color={'error'}
-                                onClick={onActiveClickHandler}>
+                                onClick={onActiveClickHandler}
+                                disabled={entityStatus === 'loading'}>
                     Active
                 </ButtonWithMemo>
                 <ButtonWithMemo size="small"
                                 variant={filter === 'completed' ? 'outlined' : 'text'}
                                 color={'success'}
-                                onClick={onCompletedClickHandler}>
+                                onClick={onCompletedClickHandler}
+                                disabled={entityStatus === 'loading'}>
                     Completed
                 </ButtonWithMemo>
             </div>

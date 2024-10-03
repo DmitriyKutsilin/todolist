@@ -7,19 +7,22 @@ type Props = {
     value: string
     onChange: (title: string) => void
     className?: string
+    disabled?: boolean
 };
-export const EditableSpan = memo(({value, onChange, className}: Props) => {
+export const EditableSpan = memo(({value, onChange, className, disabled}: Props) => {
     const [editMode, setEditMode] = useState(false)
     const [title, setTitle] = useState(value)
     // const [error, setError] = useState<string | null>(null)
 
     const changeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        // setError(null)
         setTitle(e.currentTarget.value)
     }
 
     const activateEditMode = () => {
-        setEditMode(true)
+        if (!disabled) {
+            setEditMode(true)
+            setTitle(value)
+        }
     }
 
     const deactivateEditMode = () => {
@@ -27,11 +30,6 @@ export const EditableSpan = memo(({value, onChange, className}: Props) => {
             setEditMode(false)
             onChange(title)
         }
-        // else {
-        //     // setTitle(value)
-        //     // setEditMode(false)
-        //     setError('Title is required!')
-        // }
     }
 
     const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -61,7 +59,9 @@ export const EditableSpan = memo(({value, onChange, className}: Props) => {
                         {/*}*/}
                     </>
 
-                    : <span className={className} onDoubleClick={activateEditMode}>{value}</span>
+                    : <span className={className}
+                            style={disabled ? {opacity: 0.5} : {}}
+                            onDoubleClick={activateEditMode}>{value}</span>
             }
         </>
     );

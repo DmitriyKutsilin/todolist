@@ -9,8 +9,9 @@ import TextField from '@mui/material/TextField/TextField';
 export type AddItemFormPropsType = {
     addItem: (title: string) => void
     label?: string
+    disabled?: boolean
 };
-export const AddItemForm = memo(({addItem, label}: AddItemFormPropsType) => {
+export const AddItemForm = memo(({addItem, label, disabled}: AddItemFormPropsType) => {
 
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string | null>(null)
@@ -53,8 +54,9 @@ export const AddItemForm = memo(({addItem, label}: AddItemFormPropsType) => {
                 value={title}
                 onChange={changeItemTitleHandler}
                 onKeyDown={addItemOnKeyDownHandler}
+                disabled={disabled}
             />
-            <IconButton size="medium" color="primary" onClick={addItemHandler}>
+            <IconButton size="medium" color="primary" onClick={addItemHandler} disabled={disabled}>
                 <AddCircleOutline fontSize="medium"/>
             </IconButton>
             {/*<Button title={'+'} onClick={addItemHandler}/>*/}

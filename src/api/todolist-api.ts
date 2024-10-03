@@ -50,6 +50,11 @@ export enum TaskPriorities {
     Urgently = 3,
     Later = 4
 }
+export enum Result_Code {
+    SUCCESS = 0,
+    ERROR = 1,
+    RECAPTCHA_ERROR = 10,
+}
 export type TodolistType = {
     id: string
     title: string
@@ -85,9 +90,9 @@ type FieldErrorType = {
     error: string
     field: string
 }
-type ResponseType<T = {}> = {
+export type ResponseType<T = {}> = {
     resultCode: number
     fieldsErrors: FieldErrorType[]
-    messages: String[]
+    messages: string[]
     data: T
 }

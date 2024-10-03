@@ -23,7 +23,8 @@ beforeEach(() => {
                 deadline: '',
                 todoListId: "todolistId1",
                 order: 0,
-                addedDate: ''
+                addedDate: '',
+                entityStatus: 'idle',
             },
             {
                 id: '2',
@@ -35,7 +36,8 @@ beforeEach(() => {
                 deadline: '',
                 todoListId: "todolistId1",
                 order: 0,
-                addedDate: ''
+                addedDate: '',
+                entityStatus: 'idle',
             },
             {
                 id: '3',
@@ -47,7 +49,9 @@ beforeEach(() => {
                 deadline: '',
                 todoListId: "todolistId1",
                 order: 0,
-                addedDate: ''}
+                addedDate: '',
+                entityStatus: 'idle',
+            }
         ],
         'todolistId2': [
             {
@@ -60,7 +64,9 @@ beforeEach(() => {
                 deadline: '',
                 todoListId: "todolistId2",
                 order: 0,
-                addedDate: ''},
+                addedDate: '',
+                entityStatus: 'idle'
+            },
             {
                 id: '2',
                 title: 'milk',
@@ -71,7 +77,8 @@ beforeEach(() => {
                 deadline: '',
                 todoListId: "todolistId2",
                 order: 0,
-                addedDate: ''
+                addedDate: '',
+                entityStatus: 'idle'
             },
             {
                 id: '3',
@@ -83,7 +90,9 @@ beforeEach(() => {
                 deadline: '',
                 todoListId: "todolistId2",
                 order: 0,
-                addedDate: ''}
+                addedDate: '',
+                entityStatus: 'idle'
+            }
         ]
     }
 })

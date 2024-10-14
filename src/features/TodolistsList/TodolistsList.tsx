@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from "react";
 import {useSelector} from "react-redux";
-import {AppRootStateType, useAppDispatch} from "../../app/store";
+import {AppRootStateType, useAppDispatch, useAppSelector} from "../../app/store";
 import {
     changeTodolistFilterAC,
     createTodolistTC,
@@ -15,13 +15,18 @@ import {TaskStatuses} from "../../api/todolist-api";
 import {AddItemForm} from "../../components/AddItemForm/AddItemForm";
 import Paper from "@mui/material/Paper";
 import {Todolist} from "./Todolist/Todolist";
+import {Navigate} from "react-router-dom";
 
 export const TodolistsList: React.FC = () => {
     const todolists = useSelector<AppRootStateType, TodolistDomainType[]>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
+    const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
+        if (!isLoggedIn) {
+            return
+        }
         dispatch(fetchTodolistsTC())
     }, []);
 
@@ -64,6 +69,10 @@ export const TodolistsList: React.FC = () => {
     const updateTodolist = useCallback((todolistId: string, title: string) => {
         dispatch(updateTodolistTC(todolistId, title))
     }, [dispatch])
+
+    if (!isLoggedIn) {
+        return <Navigate to='/login'/>
+    }
 
     return (
         <>

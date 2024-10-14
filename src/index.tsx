@@ -5,6 +5,36 @@ import App from "./app/App";
 import {Provider} from "react-redux";
 import {store} from "./app/store";
 import AppWithReduxWhole from "./trash/AppWithReduxWhole";
+import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
+import {Login} from "./features/Login/Login";
+import {TodolistsList} from "./features/TodolistsList/TodolistsList";
+import {ErrorPage} from "./components/ErrorPage/ErrorPage";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App/>,
+        errorElement: <Navigate to='/error404'/>,
+        children: [
+            {
+                index: true,
+                element: <Navigate to='/todolists'/>
+            },
+            {
+                path: "/login",
+                element: <Login/>,
+            },
+            {
+                path: "/todolists",
+                element: <TodolistsList/>,
+            }
+        ]
+    },
+    {
+        path: '/error404',
+        element: <ErrorPage/>
+    }
+])
 
 
 const root = ReactDOM.createRoot(
@@ -12,7 +42,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <App />
+    <RouterProvider router={router}/>
   </Provider>
 );
 

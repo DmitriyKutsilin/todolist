@@ -8,10 +8,7 @@ import {ChangeTaskEntityStatus, changeTaskEntityStatusAC} from "./tasks-reducer"
 export let todolistID1 = v1()
 export let todolistID2 = v1()
 
-const initialState: TodolistDomainType[] = [
-    // {id: todolistID1, title: 'What to learn', filter: 'all'},
-    // {id: todolistID2, title: 'What to buy', filter: 'all'},
-]
+const initialState: TodolistDomainType[] = []
 
 export const todolistsReducer = (state: TodolistDomainType[] = initialState, action: ActionsType): TodolistDomainType[] => {
     switch (action.type) {

@@ -26,17 +26,7 @@ import {
 import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 import axios, {AxiosError} from "axios";
 
-const initialState: TasksStateType = {
-    // [todolistID1]: [
-    //     {id: v1(), title: 'HTML&CSS', isDone: true},
-    //     {id: v1(), title: 'JS', isDone: true},
-    //     {id: v1(), title: 'ReactJS', isDone: false},
-    // ],
-    // [todolistID2]: [
-    //     {id: v1(), title: 'Rest API', isDone: true},
-    //     {id: v1(), title: 'GraphQL', isDone: false},
-    // ],
-}
+const initialState: TasksStateType = {}
 
 export const tasksReducer = (state: TasksStateType = initialState, action: ActionsType): TasksStateType => {
     switch (action.type) {
@@ -92,24 +82,6 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
             delete stateCopy[action.payload.id]
             return stateCopy
         }
-        // case "CHANGE-TASK-STATUS": {
-        //     return {
-        //         ...state,
-        //         [action.payload.todolistId]: state[action.payload.todolistId].map(t => t.id === action.payload.id ? {
-        //             ...t,
-        //             status: action.payload.status
-        //         } : t)
-        //     }
-        // }
-        // case "CHANGE-TASK-TITLE": {
-        //     return {
-        //         ...state,
-        //         [action.payload.todolistId]: state[action.payload.todolistId].map(t => t.id === action.payload.id ? {
-        //             ...t,
-        //             title: action.payload.title
-        //         } : t)
-        //     }
-        // }
         default:
             return state
     }

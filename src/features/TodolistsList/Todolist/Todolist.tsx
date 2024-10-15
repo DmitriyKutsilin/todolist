@@ -10,7 +10,6 @@ import {ButtonWithMemo} from "../../../components/Button/ButtonWithMemo";
 import {Task} from "./Task/Task";
 import {FilterType} from '../todolists-reducer';
 import {TaskStatuses} from '../../../api/todolist-api';
-import {useAppDispatch} from "../../../app/store";
 import {TaskDomainType} from "../tasks-reducer";
 import {RequestStatusType} from "../../../app/app-reducer";
 
@@ -45,7 +44,7 @@ export const Todolist = memo(({
 
     console.log("todolist")
 
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
 
     // useEffect(() => {
     //     dispatch(fetchTasksTC(todolistId))

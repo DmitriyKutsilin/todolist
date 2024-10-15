@@ -10,12 +10,11 @@ import {
     TodolistDomainType,
     updateTodolistTC
 } from "./todolists-reducer";
-import {TasksStateType, createTaskTC, deleteTaskTC, updateTaskTC} from "./tasks-reducer";
+import {createTaskTC, deleteTaskTC, TasksStateType, updateTaskTC} from "./tasks-reducer";
 import {TaskStatuses} from "../../api/todolist-api";
 import {AddItemForm} from "../../components/AddItemForm/AddItemForm";
 import Paper from "@mui/material/Paper";
 import {Todolist} from "./Todolist/Todolist";
-import {Navigate} from "react-router-dom";
 
 export const TodolistsList: React.FC = () => {
     const todolists = useSelector<AppRootStateType, TodolistDomainType[]>(state => state.todolists)
@@ -70,9 +69,9 @@ export const TodolistsList: React.FC = () => {
         dispatch(updateTodolistTC(todolistId, title))
     }, [dispatch])
 
-    if (!isLoggedIn) {
-        return <Navigate to='/login'/>
-    }
+    // if (!isLoggedIn) {
+    //     return <Navigate to='/login'/>
+    // }
 
     return (
         <>

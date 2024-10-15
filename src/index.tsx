@@ -1,40 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from "./app/App";
 import {Provider} from "react-redux";
 import {store} from "./app/store";
-import AppWithReduxWhole from "./trash/AppWithReduxWhole";
-import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
-import {Login} from "./features/Login/Login";
-import {TodolistsList} from "./features/TodolistsList/TodolistsList";
-import {ErrorPage} from "./components/ErrorPage/ErrorPage";
-
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App/>,
-        errorElement: <Navigate to='/error404'/>,
-        children: [
-            {
-                index: true,
-                element: <Navigate to='/todolists'/>
-            },
-            {
-                path: "/login",
-                element: <Login/>,
-            },
-            {
-                path: "/todolists",
-                element: <TodolistsList/>,
-            }
-        ]
-    },
-    {
-        path: '/error404',
-        element: <ErrorPage/>
-    }
-])
+import {RouterProvider} from "react-router-dom";
+import {router} from './routes/router';
 
 
 const root = ReactDOM.createRoot(
@@ -45,8 +15,3 @@ root.render(
     <RouterProvider router={router}/>
   </Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-

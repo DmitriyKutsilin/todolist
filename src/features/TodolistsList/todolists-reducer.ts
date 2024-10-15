@@ -1,13 +1,8 @@
-import {v1} from "uuid";
 import {Result_Code, todolistApi, TodolistType} from "../../api/todolist-api";
 import {Dispatch} from "redux";
 import {RequestStatusType, setAppStatusAC, SetAppStatusActionType} from "../../app/app-reducer";
 import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 import {ChangeTaskEntityStatus, changeTaskEntityStatusAC, fetchTasksTC} from "./tasks-reducer";
-import {ThunkDispatch} from "redux-thunk";
-
-export let todolistID1 = v1()
-export let todolistID2 = v1()
 
 const initialState: TodolistDomainType[] = []
 

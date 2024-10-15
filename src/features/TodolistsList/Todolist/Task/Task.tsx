@@ -4,8 +4,7 @@ import {EditableSpan} from "../../../../components/EditableSpan/EditableSpan";
 import IconButton from "@mui/material/IconButton/IconButton";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import ListItem from "@mui/material/ListItem/ListItem";
-import {TaskStatuses, TaskType} from '../../../../api/todolist-api';
-import {RequestStatusType} from "../../../../app/app-reducer";
+import {TaskStatuses} from '../../../../api/todolist-api';
 import {TaskDomainType} from "../../tasks-reducer";
 
 type TaskPropsType = {

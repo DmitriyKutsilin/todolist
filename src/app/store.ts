@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, legacy_createStore, UnknownAction} from "redux";
 import {tasksReducer} from "../features/TodolistsList/tasks-reducer";
 import {todolistsReducer} from "../features/TodolistsList/todolists-reducer";
-import {thunk, ThunkDispatch, ThunkMiddleware} from "redux-thunk";
+import {thunk, ThunkDispatch} from "redux-thunk";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {appReducer} from "./app-reducer";
 import {authReducer} from "../features/Login/auth-reducer";

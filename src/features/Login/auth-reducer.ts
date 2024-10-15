@@ -3,7 +3,6 @@ import {Dispatch} from "redux";
 import {setAppStatusAC, setIsInitializedAC} from "../../app/app-reducer";
 import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 import {AxiosError} from "axios";
-import {throws} from "node:assert";
 import {clearTodolistsDataAC} from "../TodolistsList/todolists-reducer";
 
 const initialState = {

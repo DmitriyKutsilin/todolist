@@ -1,5 +1,3 @@
-import {ThunkDispatch} from "redux-thunk";
-
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 const initialState = {

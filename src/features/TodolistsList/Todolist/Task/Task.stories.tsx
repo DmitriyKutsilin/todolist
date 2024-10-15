@@ -5,7 +5,6 @@ import * as React from "react";
 import {useState} from "react";
 import {Task} from "./Task";
 import {TaskPriorities, TaskStatuses} from "../../../../api/todolist-api";
-import {TaskDomainType} from "../../tasks-reducer";
 import {RequestStatusType} from "../../../../app/app-reducer";
 
 

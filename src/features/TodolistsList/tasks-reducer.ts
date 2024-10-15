@@ -1,10 +1,8 @@
-import {v1} from "uuid";
 import {
-    AddTodolistActionType, ClearTodolistsDataActionType,
+    AddTodolistActionType,
+    ClearTodolistsDataActionType,
     RemoveTodolistActionType,
-    SetTodolistsType,
-    todolistID1,
-    todolistID2
+    SetTodolistsType
 } from "./todolists-reducer";
 import {
     Result_Code,

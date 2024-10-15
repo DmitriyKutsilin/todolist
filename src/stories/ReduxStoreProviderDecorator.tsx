@@ -1,5 +1,5 @@
 import {Provider} from "react-redux";
-import {AppRootStateType, store} from "../app/store";
+import {AppRootStateType} from "../app/store";
 import {ReactNode} from "react";
 import {combineReducers, legacy_createStore} from "redux";
 import {tasksReducer} from "../features/TodolistsList/tasks-reducer";

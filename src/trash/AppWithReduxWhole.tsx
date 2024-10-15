@@ -10,7 +10,6 @@ import Paper from '@mui/material/Paper';
 import {createTodolistTC, fetchTodolistsTC, TodolistDomainType} from "../features/TodolistsList/todolists-reducer";
 import {useSelector} from "react-redux";
 import {AppRootStateType, useAppDispatch} from "../app/store";
-import {TaskType} from '../api/todolist-api';
 import {TodolistWithRedux} from "./TodolistWithRedux";
 
 function AppWithReduxWhole() {

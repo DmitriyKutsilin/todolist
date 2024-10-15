@@ -4,6 +4,7 @@ import {setAppStatusAC, setIsInitializedAC} from "../../app/app-reducer";
 import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 import {AxiosError} from "axios";
 import {throws} from "node:assert";
+import {clearTodolistsDataAC} from "../TodolistsList/todolists-reducer";
 
 const initialState = {
     isLoggedIn: false,
@@ -46,6 +47,7 @@ export const logoutTC = () => async (dispatch: Dispatch) => {
         const res = await authApi.logout()
         if (res.data.resultCode === Result_Code.SUCCESS) {
             dispatch(setIsLoggedInAC(false))
+            dispatch(clearTodolistsDataAC())
             dispatch(setAppStatusAC('succeeded'))
         } else {
             handleServerAppError(dispatch, res.data)

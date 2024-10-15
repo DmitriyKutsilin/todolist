@@ -47,9 +47,9 @@ export const Todolist = memo(({
 
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        dispatch(fetchTasksTC(todolistId))
-    }, []);
+    // useEffect(() => {
+    //     dispatch(fetchTasksTC(todolistId))
+    // }, []);
 
     const removeTodolistHandler = () => {
         removeTodolist(todolistId)

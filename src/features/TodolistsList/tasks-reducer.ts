@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {
-    AddTodolistActionType,
+    AddTodolistActionType, ClearTodolistsDataActionType,
     RemoveTodolistActionType,
     SetTodolistsType,
     todolistID1,
@@ -82,6 +82,8 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
             delete stateCopy[action.payload.id]
             return stateCopy
         }
+        case "CLEAR-TODOLISTS-DATA":
+            return {}
         default:
             return state
     }
@@ -105,7 +107,7 @@ export const changeTaskEntityStatusAC = (entityStatus: RequestStatusType, todoli
 
 
 //THUNKS
-export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<ActionsType>) => {
+export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch) => {
     dispatch(setAppStatusAC('loading'))
     todolistApi.getTasks(todolistId)
         .then(res => {
@@ -228,3 +230,4 @@ type ActionsType =
     | SetAppStatusActionType
     | SetAppErrorActionType
     | ChangeTaskEntityStatus
+    | ClearTodolistsDataActionType

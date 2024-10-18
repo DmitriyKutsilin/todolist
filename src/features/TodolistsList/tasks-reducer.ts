@@ -4,24 +4,17 @@ import {
   RemoveTodolistActionType,
   SetTodolistsType,
 } from './todolists-reducer'
-import {
-  Result_Code,
-  TaskPriorities,
-  TaskStatuses,
-  TaskType,
-  todolistApi,
-  UpdateTaskModelType,
-} from '../../api/todolist-api'
+import { Result_Code, TaskPriorities, TaskStatuses, TaskType, todolistApi, UpdateTaskModelType } from 'api/todolist-api'
 import { Dispatch } from 'redux'
-import { AppRootStateType } from '../../app/store'
+import { AppRootStateType } from 'app/store'
 import {
   RequestStatusType,
   setAppErrorAC,
   SetAppErrorActionType,
   setAppStatusAC,
   SetAppStatusActionType,
-} from '../../app/app-reducer'
-import { handleServerAppError, handleServerNetworkError } from '../../utils/error-utils'
+} from 'app/app-reducer'
+import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import axios, { AxiosError } from 'axios'
 
 const initialState: TasksStateType = {}

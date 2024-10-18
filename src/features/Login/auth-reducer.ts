@@ -1,7 +1,7 @@
-import { authApi, LoginParamsType, Result_Code } from '../../api/todolist-api'
+import { authApi, LoginParamsType, Result_Code } from 'api/todolist-api'
 import { Dispatch } from 'redux'
-import { setAppStatusAC, setIsInitializedAC } from '../../app/app-reducer'
-import { handleServerAppError, handleServerNetworkError } from '../../utils/error-utils'
+import { setAppStatusAC, setIsInitializedAC } from 'app/app-reducer'
+import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import { AxiosError } from 'axios'
 import { clearTodolistsDataAC } from '../TodolistsList/todolists-reducer'
 

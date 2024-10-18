@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { AppRootStateType, useAppDispatch, useAppSelector } from '../../app/store'
+import { AppRootStateType, useAppDispatch, useAppSelector } from 'app/store'
 import {
   changeTodolistFilterAC,
   createTodolistTC,
@@ -11,8 +11,8 @@ import {
   updateTodolistTC,
 } from './todolists-reducer'
 import { createTaskTC, deleteTaskTC, TasksStateType, updateTaskTC } from './tasks-reducer'
-import { TaskStatuses } from '../../api/todolist-api'
-import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
+import { TaskStatuses } from 'api/todolist-api'
+import { AddItemForm } from 'components/AddItemForm/AddItemForm'
 import Paper from '@mui/material/Paper'
 import { Todolist } from './Todolist/Todolist'
 

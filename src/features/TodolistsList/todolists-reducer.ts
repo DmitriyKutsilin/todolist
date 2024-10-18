@@ -1,7 +1,7 @@
-import { Result_Code, todolistApi, TodolistType } from '../../api/todolist-api'
+import { Result_Code, todolistApi, TodolistType } from 'api/todolist-api'
 import { Dispatch } from 'redux'
-import { RequestStatusType, setAppStatusAC, SetAppStatusActionType } from '../../app/app-reducer'
-import { handleServerAppError, handleServerNetworkError } from '../../utils/error-utils'
+import { RequestStatusType, setAppStatusAC, SetAppStatusActionType } from 'app/app-reducer'
+import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import { ChangeTaskEntityStatus, changeTaskEntityStatusAC, fetchTasksTC } from './tasks-reducer'
 
 const initialState: TodolistDomainType[] = []

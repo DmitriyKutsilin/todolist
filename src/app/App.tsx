@@ -8,9 +8,9 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container/Container'
 import LinearProgress from '@mui/material/LinearProgress/LinearProgress'
 import { useAppDispatch, useAppSelector } from './store'
-import { ErrorSnackbar } from '../components/ErrorSnackbar/ErrorSnackbar'
+import { ErrorSnackbar } from 'components/ErrorSnackbar/ErrorSnackbar'
 import { Outlet } from 'react-router-dom'
-import { logoutTC, meTC } from '../features/Login/auth-reducer'
+import { logoutTC, meTC } from 'features/Login/auth-reducer'
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress'
 
 //TODO: позиционирование прогрессбара

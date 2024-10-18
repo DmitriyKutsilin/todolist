@@ -1,22 +1,22 @@
 // @flow
 import * as React from 'react'
-import { AddItemForm } from '../components/AddItemForm/AddItemForm'
-import { EditableSpan } from '../components/EditableSpan/EditableSpan'
+import { AddItemForm } from 'components/AddItemForm/AddItemForm'
+import { EditableSpan } from 'components/EditableSpan/EditableSpan'
 import IconButton from '@mui/material/IconButton/IconButton'
 import Button from '@mui/material/Button/Button'
 import List from '@mui/material/List/List'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useSelector } from 'react-redux'
-import { AppRootStateType, useAppDispatch } from '../app/store'
+import { AppRootStateType, useAppDispatch } from 'app/store'
 import {
   changeTodolistFilterAC,
   deleteTodolistTC,
   FilterType,
   TodolistDomainType,
   updateTodolistTC,
-} from '../features/TodolistsList/todolists-reducer'
-import { createTaskTC, fetchTasksTC } from '../features/TodolistsList/tasks-reducer'
-import { TaskStatuses, TaskType } from '../api/todolist-api'
+} from 'features/TodolistsList/todolists-reducer'
+import { createTaskTC, fetchTasksTC } from 'features/TodolistsList/tasks-reducer'
+import { TaskStatuses, TaskType } from 'api/todolist-api'
 import { TaskWithRedux } from './TaskWithRedux'
 import { useEffect } from 'react'
 

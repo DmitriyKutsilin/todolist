@@ -1,10 +1,10 @@
 import { applyMiddleware, combineReducers, legacy_createStore, UnknownAction } from 'redux'
-import { tasksReducer } from '../features/TodolistsList/tasks-reducer'
-import { todolistsReducer } from '../features/TodolistsList/todolists-reducer'
+import { tasksReducer } from 'features/TodolistsList/tasks-reducer'
+import { todolistsReducer } from 'features/TodolistsList/todolists-reducer'
 import { thunk, ThunkDispatch } from 'redux-thunk'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { appReducer } from './app-reducer'
-import { authReducer } from '../features/Login/auth-reducer'
+import { authReducer } from 'features/Login/auth-reducer'
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,

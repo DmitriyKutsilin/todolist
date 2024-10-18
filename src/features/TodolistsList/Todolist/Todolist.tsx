@@ -1,17 +1,17 @@
 // @flow
 import * as React from 'react'
 import { memo, useCallback, useMemo } from 'react'
-import { AddItemForm } from '../../../components/AddItemForm/AddItemForm'
-import { EditableSpan } from '../../../components/EditableSpan/EditableSpan'
+import { AddItemForm } from 'components/AddItemForm/AddItemForm'
+import { EditableSpan } from 'components/EditableSpan/EditableSpan'
 import IconButton from '@mui/material/IconButton/IconButton'
 import List from '@mui/material/List/List'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { ButtonWithMemo } from '../../../components/Button/ButtonWithMemo'
+import { ButtonWithMemo } from 'components/Button/ButtonWithMemo'
 import { Task } from './Task/Task'
 import { FilterType } from '../todolists-reducer'
-import { TaskStatuses } from '../../../api/todolist-api'
+import { TaskStatuses } from 'api/todolist-api'
 import { TaskDomainType } from '../tasks-reducer'
-import { RequestStatusType } from '../../../app/app-reducer'
+import { RequestStatusType } from 'app/app-reducer'
 
 type TodolistProps = {
   todolistId: string

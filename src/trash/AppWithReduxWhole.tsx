@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect } from 'react'
 import '../app/App.css'
-import { AddItemForm } from '../components/AddItemForm/AddItemForm'
+import { AddItemForm } from 'components/AddItemForm/AddItemForm'
 import AppBar from '@mui/material/AppBar/AppBar'
 import Toolbar from '@mui/material/Toolbar/Toolbar'
 import IconButton from '@mui/material/IconButton/IconButton'
 import Button from '@mui/material/Button/Button'
 import MenuIcon from '@mui/icons-material/Menu'
 import Paper from '@mui/material/Paper'
-import { createTodolistTC, fetchTodolistsTC, TodolistDomainType } from '../features/TodolistsList/todolists-reducer'
+import { createTodolistTC, fetchTodolistsTC, TodolistDomainType } from 'features/TodolistsList/todolists-reducer'
 import { useSelector } from 'react-redux'
-import { AppRootStateType, useAppDispatch } from '../app/store'
+import { AppRootStateType, useAppDispatch } from 'app/store'
 import { TodolistWithRedux } from './TodolistWithRedux'
 
 function AppWithReduxWhole() {

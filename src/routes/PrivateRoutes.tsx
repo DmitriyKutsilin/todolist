@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useAppSelector } from '../app/store'
+import { useAppSelector } from 'app/store'
 import { Navigate, Outlet } from 'react-router-dom'
 import { PATH } from './router'
 

@@ -8,7 +8,7 @@ const instance = axios.create({
   },
 })
 
-export const authApi = {
+export const authAPI = {
   login(data: LoginParamsType) {
     return instance.post<
       ResponseType<{ userId: number; token: string }>,
@@ -29,7 +29,7 @@ export const authApi = {
 }
 
 //API
-export const todolistApi = {
+export const todolistAPI = {
   getTodolists() {
     return instance.get<TodolistType[]>('/todo-lists')
   },

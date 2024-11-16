@@ -3,9 +3,9 @@ import { fn } from '@storybook/test'
 import { action } from '@storybook/addon-actions'
 import * as React from 'react'
 import { useState } from 'react'
-import { Task } from './Task'
+import { Task } from 'features/TodolistsList/Todolist/Task/Task'
 import { TaskPriorities, TaskStatuses } from 'api/todolist-api'
-import { RequestStatusType } from 'app/app-reducer'
+import { RequestStatusType } from 'app/appSlice'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -49,7 +49,7 @@ export const TaskIsDoneStory: Story = {
     task: {
       id: '121dgzsg14sefes',
       title: 'Redux',
-      status: TaskStatuses.New,
+      status: TaskStatuses.Completed,
       description: '',
       priority: TaskPriorities.Low,
       startDate: '',

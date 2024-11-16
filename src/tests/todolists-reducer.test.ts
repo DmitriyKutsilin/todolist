@@ -1,13 +1,13 @@
 import { v1 } from 'uuid'
 import {
-  addTodolistAC,
-  changeTodolistFilterAC,
-  changeTodolistTitleAC,
+  addTodolist,
+  changeTodolistFilter,
+  changeTodolistTitle,
   FilterType,
-  removeTodolistAC,
+  removeTodolist,
   TodolistDomainType,
   todolistsReducer,
-} from 'features/TodolistsList/todolists-reducer'
+} from 'features/TodolistsList/todolistsSlice'
 
 let todolistId1: string
 let todolistId2: string
@@ -25,7 +25,7 @@ beforeEach(() => {
 
 test('correct todolist should be removed', () => {
   // 2. Действие
-  const action = removeTodolistAC(todolistId1)
+  const action = removeTodolist({ id: todolistId1 })
 
   const endState = todolistsReducer(startState, action)
 
@@ -43,7 +43,7 @@ test('correct todolist should be added', () => {
     addedDate: '',
     order: 0,
   }
-  const action = addTodolistAC(newTodolist)
+  const action = addTodolist({ todolist: newTodolist })
 
   const endState = todolistsReducer(startState, action)
 
@@ -53,7 +53,7 @@ test('correct todolist should be added', () => {
 
 test('correct todolist should change its name', () => {
   const newTitle = 'New title'
-  const action = changeTodolistTitleAC(todolistId2, newTitle)
+  const action = changeTodolistTitle({ id: todolistId2, title: newTitle })
 
   const endState = todolistsReducer(startState, action)
 
@@ -63,7 +63,7 @@ test('correct todolist should change its name', () => {
 
 test('correct filter of todolist should be changed', () => {
   const filterValue: FilterType = 'completed'
-  const action = changeTodolistFilterAC(todolistId2, filterValue)
+  const action = changeTodolistFilter({ id: todolistId2, filter: filterValue })
 
   const endState = todolistsReducer(startState, action)
 

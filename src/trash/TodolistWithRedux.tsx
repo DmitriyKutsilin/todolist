@@ -9,13 +9,13 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useSelector } from 'react-redux'
 import { AppRootStateType, useAppDispatch } from 'app/store'
 import {
-  changeTodolistFilterAC,
+  changeTodolistFilter,
   deleteTodolistTC,
   FilterType,
   TodolistDomainType,
   updateTodolistTC,
-} from 'features/TodolistsList/todolists-reducer'
-import { createTaskTC, fetchTasksTC } from 'features/TodolistsList/tasks-reducer'
+} from 'features/TodolistsList/todolistsSlice'
+import { createTaskTC, fetchTasksTC } from 'features/TodolistsList/tasksSlice'
 import { TaskStatuses, TaskType } from 'api/todolist-api'
 import { TaskWithRedux } from './TaskWithRedux'
 import { useEffect } from 'react'
@@ -41,7 +41,7 @@ export const TodolistWithRedux = ({ todolist }: TodolistProps) => {
   }
 
   const changeFilterTasksHandler = (filter: FilterType) => {
-    dispatch(changeTodolistFilterAC(id, filter))
+    dispatch(changeTodolistFilter({ id, filter }))
   }
 
   const removeTodolistHandler = () => {

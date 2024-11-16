@@ -8,10 +8,10 @@ import List from '@mui/material/List/List'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { ButtonWithMemo } from 'components/Button/ButtonWithMemo'
 import { Task } from './Task/Task'
-import { FilterType } from '../todolists-reducer'
+import { FilterType } from 'features/TodolistsList/todolistsSlice'
 import { TaskStatuses } from 'api/todolist-api'
-import { TaskDomainType } from '../tasks-reducer'
-import { RequestStatusType } from 'app/app-reducer'
+import { TaskDomainType } from 'features/TodolistsList/tasksSlice'
+import { RequestStatusType } from 'app/appSlice'
 
 type TodolistProps = {
   todolistId: string
@@ -107,10 +107,11 @@ export const Todolist = memo(
         </div>
         <AddItemForm addItem={addTaskCallback} label={'New task'} disabled={entityStatus === 'loading'} />
         <List>
-          {todolistTasks.length === 0 ? (
+          {/*проверка на существование массива тасок*/}
+          {todolistTasks?.length === 0 ? (
             <p>Тасок нет</p>
           ) : (
-            todolistTasks.map((task) => {
+            todolistTasks?.map((task) => {
               return (
                 // <TaskWithRedux key={task.id} task={task} todolistId={todolistId}/>
                 <Task

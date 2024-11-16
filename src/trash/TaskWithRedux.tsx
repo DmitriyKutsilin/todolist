@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton/IconButton'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import ListItem from '@mui/material/ListItem/ListItem'
 import { useAppDispatch } from 'app/store'
-import { deleteTaskTC, updateTaskTC } from 'features/TodolistsList/tasks-reducer'
+import { deleteTaskTC, updateTaskTC } from 'features/TodolistsList/tasksSlice'
 import { TaskStatuses, TaskType } from 'api/todolist-api'
 
 type TaskPropsType = {

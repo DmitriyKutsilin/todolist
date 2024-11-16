@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton/IconButton'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import ListItem from '@mui/material/ListItem/ListItem'
 import { TaskStatuses } from 'api/todolist-api'
-import { TaskDomainType } from '../../tasks-reducer'
+import { TaskDomainType } from 'features/TodolistsList/tasksSlice'
 
 type TaskPropsType = {
   task: TaskDomainType

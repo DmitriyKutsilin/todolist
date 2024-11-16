@@ -10,8 +10,9 @@ import LinearProgress from '@mui/material/LinearProgress/LinearProgress'
 import { useAppDispatch, useAppSelector } from './store'
 import { ErrorSnackbar } from 'components/ErrorSnackbar/ErrorSnackbar'
 import { Outlet } from 'react-router-dom'
-import { logoutTC, meTC } from 'features/Login/auth-reducer'
+import { logoutTC } from 'features/Login/authSlice'
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress'
+import { initializeAppTC } from 'app/appSlice'
 
 //TODO: позиционирование прогрессбара
 function App() {
@@ -21,7 +22,7 @@ function App() {
   const isLoggedIn = useAppSelector<boolean>((state) => state.auth.isLoggedIn)
 
   useEffect(() => {
-    dispatch(meTC())
+    dispatch(initializeAppTC())
   }, [])
 
   const logout = () => {

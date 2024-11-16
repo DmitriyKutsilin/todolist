@@ -23,6 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 /.idea
-/integration/__image_snapshots__
+/integration
 
 *storybook.log

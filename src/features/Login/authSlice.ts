@@ -1,4 +1,4 @@
-import { authAPI, LoginParamsType, Result_Code } from 'api/todolist-api'
+import { authAPI, Result_Code } from 'api/todolist-api'
 import { Dispatch } from 'redux'
 import { setAppStatus, setAppInitialized } from 'app/appSlice'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
@@ -6,6 +6,7 @@ import { AxiosError } from 'axios'
 import { clearTodolistsData } from 'features/TodolistsList/todolistsSlice'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from 'app/store'
+import { LoginParamsType } from 'features/Login/Login'
 
 const authSlice = createSlice({
   name: 'auth',
@@ -31,6 +32,7 @@ export const loginTC =
       if (res.data.resultCode === Result_Code.SUCCESS) {
         dispatch(setIsLoggedIn({ isLoggedIn: true }))
         dispatch(setAppStatus({ status: 'succeeded' }))
+        localStorage.setItem('sn-token', res.data.data.token)
       } else {
         handleServerAppError(dispatch, res.data)
       }

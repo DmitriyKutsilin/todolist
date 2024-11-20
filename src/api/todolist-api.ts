@@ -1,11 +1,16 @@
 import axios, { AxiosResponse } from 'axios'
+import { LoginParamsType } from 'features/Login/Login'
 
 const instance = axios.create({
-  baseURL: 'https://social-network.samuraijs.com/api/1.1',
-  withCredentials: true,
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
-    'API-KEY': '803b80fd-1594-4842-b346-45b4dbcc996e',
+    'API-KEY': process.env.REACT_APP_API_KEY,
   },
+})
+
+instance.interceptors.request.use(function (config) {
+  config.headers['Authorization'] = `Bearer ${localStorage.getItem('sn-token')}`
+  return config
 })
 
 export const authAPI = {
@@ -15,23 +20,24 @@ export const authAPI = {
       AxiosResponse<
         ResponseType<{
           userId: number
+          token: string
         }>
       >,
       LoginParamsType
-    >('/auth/login', data)
+    >('auth/login', data)
   },
   logout() {
-    return instance.delete<ResponseType>('/auth/login')
+    return instance.delete<ResponseType>('auth/login')
   },
   me() {
-    return instance.get<ResponseType<UserType>>('/auth/me')
+    return instance.get<ResponseType<UserType>>('auth/me')
   },
 }
 
 //API
 export const todolistAPI = {
   getTodolists() {
-    return instance.get<TodolistType[]>('/todo-lists')
+    return instance.get<TodolistType[]>('todo-lists')
   },
   createTodolist(title: string) {
     return instance.post<
@@ -42,7 +48,7 @@ export const todolistAPI = {
         }>
       >,
       { title: string }
-    >('/todo-lists', { title })
+    >('todo-lists', { title })
   },
   updateTodolist(todolistId: string, title: string) {
     return instance.put<
@@ -51,10 +57,10 @@ export const todolistAPI = {
       {
         title: string
       }
-    >(`/todo-lists/${todolistId}`, { title })
+    >(`todo-lists/${todolistId}`, { title })
   },
   deleteTodolist(todolistId: string) {
-    return instance.delete<ResponseType>(`/todo-lists/${todolistId}`)
+    return instance.delete<ResponseType>(`todo-lists/${todolistId}`)
   },
   getTasks(todolistId: string) {
     return instance.get<GetTasksResponse>(`todo-lists/${todolistId}/tasks`)
@@ -85,12 +91,6 @@ export const todolistAPI = {
 }
 
 //TYPES
-export type LoginParamsType = {
-  email: string
-  password: string
-  rememberMe?: boolean
-  captcha?: boolean
-}
 
 export enum TaskStatuses {
   New = 0,

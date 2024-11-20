@@ -17,6 +17,13 @@ type ErrorsType = {
   password?: string
 }
 
+export type LoginParamsType = {
+  email: string
+  password: string
+  rememberMe?: boolean
+  captcha?: boolean
+}
+
 const validate = (values: any) => {
   const errors: ErrorsType = {}
   if (!values.email) {

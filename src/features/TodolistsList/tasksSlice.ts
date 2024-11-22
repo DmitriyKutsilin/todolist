@@ -8,7 +8,7 @@ import { addTodolist, clearTodolistsData, removeTodolist, setTodolists } from 'f
 
 const initialState: TasksStateType = {}
 
-const tasksSlice = createSlice({
+export const tasksSlice = createSlice({
   name: 'tasks',
   initialState: {} as TasksStateType,
   reducers: {

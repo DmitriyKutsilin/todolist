@@ -7,7 +7,7 @@ import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: TodolistDomainType[] = []
 
-const todolistsSlice = createSlice({
+export const todolistsSlice = createSlice({
   name: 'todolists',
   initialState: [] as TodolistDomainType[],
   reducers: {

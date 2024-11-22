@@ -5,7 +5,7 @@ import { setIsLoggedIn } from 'features/Login/authSlice'
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
-const appSlice = createSlice({
+export const appSlice = createSlice({
   name: 'app',
   initialState: {
     isInitialized: false,
@@ -23,10 +23,16 @@ const appSlice = createSlice({
       state.isInitialized = action.payload.isInitialized
     },
   },
+  selectors: {
+    selectIsInitialized: (state) => state.isInitialized,
+    selectAppError: (state) => state.error,
+    selectAppStatus: (state) => state.status,
+  },
 })
 
 export const appReducer = appSlice.reducer
 export const { setAppError, setAppStatus, setAppInitialized } = appSlice.actions
+export const { selectIsInitialized, selectAppStatus, selectAppError } = appSlice.selectors
 
 export const initializeAppTC = () => (dispatch: Dispatch) => {
   authAPI.me().then((res) => {

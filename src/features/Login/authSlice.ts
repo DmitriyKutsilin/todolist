@@ -1,6 +1,5 @@
 import { authAPI, Result_Code } from 'api/todolist-api'
-import { Dispatch } from 'redux'
-import { setAppStatus, setAppInitialized } from 'app/appSlice'
+import { setAppStatus } from 'app/appSlice'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import { AxiosError } from 'axios'
 import { clearTodolistsData } from 'features/TodolistsList/todolistsSlice'
@@ -8,7 +7,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from 'app/store'
 import { LoginParamsType } from 'features/Login/Login'
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     isLoggedIn: false,
@@ -18,10 +17,14 @@ const authSlice = createSlice({
       state.isLoggedIn = action.payload.isLoggedIn
     },
   },
+  selectors: {
+    selectIsLoggedIn: (state) => state.isLoggedIn,
+  },
 })
 
 export const authReducer = authSlice.reducer
 export const { setIsLoggedIn } = authSlice.actions
+export const { selectIsLoggedIn } = authSlice.selectors
 
 export const loginTC =
   (data: LoginParamsType): AppThunk =>

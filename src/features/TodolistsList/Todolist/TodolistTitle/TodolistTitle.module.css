@@ -1,10 +1,10 @@
-.todolist-title-container {
+.titleContainer {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
 }
 
-.todolistHeader {
+.header {
     display: inline-block;
     font-size: 22px;
     font-weight: 500;

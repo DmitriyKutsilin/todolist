@@ -24,9 +24,9 @@ export const TodolistTitle = ({ todolist }: Props) => {
   }
 
   return (
-    <div className={s.todolistTitleContainer}>
+    <div className={s.titleContainer}>
       <EditableSpan
-        className={s.todolistHeader}
+        className={s.header}
         value={title}
         onChange={updateTodolistHandler}
         disabled={entityStatus === 'loading'}

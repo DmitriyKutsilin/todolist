@@ -1,0 +1,20 @@
+.addItemForm {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 50px;
+    align-items: stretch;
+    margin: 0 50px;
+}
+
+.paper {
+    padding: 15px;
+    height: 100%;
+}

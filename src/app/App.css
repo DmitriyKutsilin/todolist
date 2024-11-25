@@ -34,17 +34,6 @@
   word-break: break-all;
 }
 
-.todolistHeader {
-  display: inline-block;
-  font-size: 22px;
-  font-weight: 500;
-}
-
-.todolist-title-container {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-}
 
 .taskCenter {
   display: flex;
@@ -60,12 +49,6 @@
 .paper {
   padding: 15px;
   height: 100%;
-}
-
-.filterButtonsContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
 /*ul {*/

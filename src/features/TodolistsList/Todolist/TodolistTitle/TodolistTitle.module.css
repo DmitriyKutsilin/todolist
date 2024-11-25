@@ -1,0 +1,11 @@
+.todolist-title-container {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.todolistHeader {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 500;
+}

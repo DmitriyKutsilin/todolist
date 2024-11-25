@@ -5,10 +5,10 @@ import IconButton from '@mui/material/IconButton/IconButton'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import ListItem from '@mui/material/ListItem/ListItem'
 import { TaskStatuses } from 'api/todolist-api'
-import { deleteTaskTC, TaskDomainType, updateTaskTC } from 'features/TodolistsList/tasksSlice'
+import { deleteTaskTC, TaskDomainType, updateTaskTC } from 'features/todolists/model/tasksSlice'
 import { useAppDispatch } from 'app/store'
-import { TodolistDomainType } from 'features/TodolistsList/todolistsSlice'
-import s from './Task.module.css'
+import { TodolistDomainType } from 'features/todolists/model/todolistsSlice'
+import s from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task.module.css'
 
 type TaskPropsType = {
   task: TaskDomainType

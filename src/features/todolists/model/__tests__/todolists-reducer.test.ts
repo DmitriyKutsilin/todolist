@@ -7,7 +7,7 @@ import {
   removeTodolist,
   TodolistDomainType,
   todolistsReducer,
-} from 'features/TodolistsList/todolistsSlice'
+} from 'features/todolists/model/todolistsSlice'
 
 let todolistId1: string
 let todolistId2: string

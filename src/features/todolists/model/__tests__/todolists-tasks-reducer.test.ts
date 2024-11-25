@@ -1,5 +1,5 @@
-import { tasksReducer, TasksStateType } from 'features/TodolistsList/tasksSlice'
-import { addTodolist, TodolistDomainType, todolistsReducer } from 'features/TodolistsList/todolistsSlice'
+import { tasksReducer, TasksStateType } from 'features/todolists/model/tasksSlice'
+import { addTodolist, TodolistDomainType, todolistsReducer } from 'features/todolists/model/todolistsSlice'
 
 test('ids should be equals', () => {
   const startTasksState: TasksStateType = {}

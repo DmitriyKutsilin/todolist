@@ -1,7 +1,7 @@
 import { Result_Code, todolistAPI, TodolistType } from 'api/todolist-api'
 import { RequestStatusType, setAppStatus } from 'app/appSlice'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
-import { changeTaskEntityStatus, fetchTasksTC } from 'features/TodolistsList/tasksSlice'
+import { changeTaskEntityStatus, fetchTasksTC } from 'features/todolists/model/tasksSlice'
 import { AppThunk } from 'app/store'
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 
@@ -64,19 +64,6 @@ export const {
   clearTodolistsData,
 } = todolistsSlice.actions
 
-//ACTION CREATORS
-// export const removeTodolistAC = (id: string) => ({ type: 'REMOVE-TODOLIST', payload: { id } }) as const
-// export const addTodolistAC = (todolist: TodolistType) => ({ type: 'ADD-TODOLIST', payload: { todolist } }) as const
-// export const changeTodolistTitleAC = (id: string, title: string) =>
-//   ({ type: 'CHANGE-TODOLIST-TITLE', payload: { id, title } }) as const
-// export const changeTodolistFilterAC = (id: string, filter: FilterType) =>
-//   ({ type: 'CHANGE-TODOLIST-FILTER', payload: { id, filter } }) as const
-// export const setTodolistsAC = (todolists: TodolistType[]) =>
-//   ({ type: 'SET-TODOLISTS', payload: { todolists } }) as const
-// export const changeTodolistEntityStatusAC = (id: string, entityStatus: RequestStatusType) =>
-//   ({ type: 'CHANGE-TODOLIST-ENTITY-STATUS', payload: { id, entityStatus } }) as const
-// export const clearTodolistsDataAC = () => ({ type: 'CLEAR-TODOLISTS-DATA' }) as const
-
 //THUNKS
 export const fetchTodolistsTC = (): AppThunk => (dispatch) => {
   dispatch(setAppStatus({ status: 'loading' }))
@@ -102,9 +89,9 @@ export const deleteTodolistTC =
     dispatch(changeTodolistEntityStatus({ id, entityStatus: 'loading' }))
 
     const tasks = getState().tasks[id]
-    console.log(tasks)
+
     tasks.forEach((t) => dispatch(changeTaskEntityStatus({ entityStatus: 'loading', todolistId: id, taskId: t.id })))
-    // dispatch(changeTaskEntityStatus({ entityStatus: 'loading', todolistId: id }))
+
     todolistAPI
       .deleteTodolist(id)
       .then((res) => {
@@ -122,7 +109,6 @@ export const deleteTodolistTC =
             }),
           ),
         )
-        // dispatch(changeTaskEntityStatus({ entityStatus: 'failed', todolistId: id }))
       })
   }
 export const createTodolistTC =

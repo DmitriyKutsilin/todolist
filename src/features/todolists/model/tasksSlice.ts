@@ -4,7 +4,7 @@ import { RequestStatusType, setAppError, setAppStatus } from 'app/appSlice'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import axios, { AxiosError } from 'axios'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { addTodolist, clearTodolistsData, removeTodolist, setTodolists } from 'features/TodolistsList/todolistsSlice'
+import { addTodolist, clearTodolistsData, removeTodolist, setTodolists } from 'features/todolists/model/todolistsSlice'
 
 const initialState: TasksStateType = {}
 

@@ -1,6 +1,6 @@
 import { TaskPriorities, TaskStatuses } from 'api/todolist-api'
-import { addTask, removeTask, tasksReducer, TasksStateType, updateTask } from 'features/TodolistsList/tasksSlice'
-import { addTodolist, removeTodolist } from 'features/TodolistsList/todolistsSlice'
+import { addTask, removeTask, tasksReducer, TasksStateType, updateTask } from 'features/todolists/model/tasksSlice'
+import { addTodolist, removeTodolist } from 'features/todolists/model/todolistsSlice'
 
 let startState: TasksStateType
 

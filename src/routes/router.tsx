@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom'
 import App from '../app/App'
 import { Login } from 'features/Login/Login'
-import { TodolistsList } from 'features/TodolistsList/TodolistsList'
+import { TodolistsList } from 'features/todolists/ui/TodolistsList/TodolistsList'
 import React from 'react'
 import { PrivateRoutes } from './PrivateRoutes'
 import { Page404 } from 'components/Page404/Page404'

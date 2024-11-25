@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react'
-import { TodolistDomainType } from 'features/TodolistsList/todolistsSlice'
 import { useEffect, useMemo } from 'react'
+import { TodolistDomainType } from 'features/todolists/model/todolistsSlice'
 import { TaskStatuses } from 'api/todolist-api'
-import { AppRootStateType, useAppDispatch, useAppSelector } from 'app/store'
+import { AppRootStateType, useAppDispatch } from 'app/store'
 import { useSelector } from 'react-redux'
-import { fetchTasksTC, TasksStateType } from 'features/TodolistsList/tasksSlice'
-import { Task } from 'features/TodolistsList/Todolist/Tasks/Task/Task'
+import { fetchTasksTC, TasksStateType } from 'features/todolists/model/tasksSlice'
+import { Task } from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task'
 import List from '@mui/material/List/List'
 
 type Props = {
@@ -24,7 +24,6 @@ export const Tasks = ({ todolist }: Props) => {
   let todolistTasks = tasks[todolist.id]
 
   todolistTasks = useMemo(() => {
-    console.log('useMemo')
     if (todolist.filter === 'active') {
       todolistTasks = todolistTasks.filter((t) => t.status === TaskStatuses.New)
     }

@@ -5,29 +5,30 @@ import IconButton from '@mui/material/IconButton/IconButton'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import ListItem from '@mui/material/ListItem/ListItem'
 import { TaskStatuses } from 'api/todolist-api'
-import { TaskDomainType } from 'features/TodolistsList/tasksSlice'
+import { deleteTaskTC, TaskDomainType, updateTaskTC } from 'features/TodolistsList/tasksSlice'
+import { useAppDispatch } from 'app/store'
+import { TodolistDomainType } from 'features/TodolistsList/todolistsSlice'
+import s from './Task.module.css'
 
 type TaskPropsType = {
   task: TaskDomainType
-  todolistId: string
-  removeTask: (todolistId: string, taskId: string) => void
-  changeTaskStatus: (todolistId: string, taskId: string, status: TaskStatuses) => void
-  updateTask: (todolistId: string, taskId: string, title: string) => void
+  todolist: TodolistDomainType
 }
 
-export const Task = memo(({ task, todolistId, removeTask, changeTaskStatus, updateTask }: TaskPropsType) => {
-  console.log('task')
+export const Task = memo(({ task, todolist }: TaskPropsType) => {
+  const dispatch = useAppDispatch()
+
   const removeTaskHandler = () => {
-    removeTask(todolistId, task.id)
+    dispatch(deleteTaskTC(todolist.id, task.id))
   }
 
-  const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const isDone = e.currentTarget.checked
-    changeTaskStatus(todolistId, task.id, isDone ? TaskStatuses.Completed : TaskStatuses.New)
+  const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const status = e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New
+    dispatch(updateTaskTC(todolist.id, task.id, { status }))
   }
 
-  const updateTaskHandler = (title: string) => {
-    updateTask(todolistId, task.id, title)
+  const changeTaskTitleHandler = (title: string) => {
+    dispatch(updateTaskTC(todolist.id, task.id, { title }))
   }
 
   return (
@@ -38,16 +39,16 @@ export const Task = memo(({ task, todolistId, removeTask, changeTaskStatus, upda
         opacity: task.status === TaskStatuses.Completed ? 0.5 : 1,
       }}
     >
-      <div className="taskCenter">
+      <div className={s.checkboxTitleContainer}>
         <Checkbox
           size="medium"
           checked={task.status === TaskStatuses.Completed}
-          onChange={onChangeStatusHandler}
+          onChange={changeTaskStatusHandler}
           disabled={task.entityStatus === 'loading'}
         />
         <EditableSpan
           value={task.title}
-          onChange={updateTaskHandler}
+          onChange={changeTaskTitleHandler}
           disabled={task.entityStatus === 'loading'}
         ></EditableSpan>
       </div>

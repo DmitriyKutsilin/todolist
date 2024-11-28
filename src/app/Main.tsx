@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import Container from '@mui/material/Container/Container'
-import { AddItemForm } from 'common/components/AddItemForm/AddItemForm'
 import { TodolistsList } from 'features/todolists/ui/TodolistsList/TodolistsList'
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { selectIsLoggedIn } from 'features/Login/authSlice'
@@ -9,6 +8,7 @@ import { createTodolistTC } from 'features/todolists/model/todolistsSlice'
 import { Navigate } from 'react-router-dom'
 import { PATH } from 'routes/router'
 import Grid from '@mui/material/Grid/Grid'
+import { AddItemForm } from 'common/components'
 
 export const Main = () => {
   const dispatch = useAppDispatch()

@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react'
 import { memo } from 'react'
-import { AddItemForm } from 'common/components/AddItemForm/AddItemForm'
 import { TodolistDomainType } from 'features/todolists/model/todolistsSlice'
 import { createTaskTC } from 'features/todolists/model/tasksSlice'
 import { TodolistTitle } from 'features/todolists/ui/TodolistsList/Todolist/TodolistTitle/TodolistTitle'
 import { Tasks } from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Tasks'
 import { FilterTasksButtons } from 'features/todolists/ui/TodolistsList/Todolist/FilterTasksButtons/FilterTasksButtons'
 import { useAppDispatch } from 'app/store'
+import { AddItemForm } from 'common/components'
 
 type TodolistProps = {
   todolist: TodolistDomainType

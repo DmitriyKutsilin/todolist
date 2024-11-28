@@ -1,11 +1,11 @@
 // @flow
 import * as React from 'react'
 import { deleteTodolistTC, TodolistDomainType, updateTodolistTC } from 'features/todolists/model/todolistsSlice'
-import { EditableSpan } from 'common/components/EditableSpan/EditableSpan'
 import IconButton from '@mui/material/IconButton/IconButton'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useAppDispatch } from 'app/store'
 import s from 'features/todolists/ui/TodolistsList/Todolist/TodolistTitle/TodolistTitle.module.css'
+import { EditableSpan } from 'common/components'
 
 type Props = {
   todolist: TodolistDomainType

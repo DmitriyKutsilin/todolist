@@ -2,10 +2,10 @@ import React, { useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { AppRootStateType, useAppDispatch } from 'app/store'
 import { createTodolistTC, fetchTodolistsTC, TodolistDomainType } from 'features/todolists/model/todolistsSlice'
-import { AddItemForm } from 'common/components/AddItemForm/AddItemForm'
 import Paper from '@mui/material/Paper'
 import { Todolist } from 'features/todolists/ui/TodolistsList/Todolist/Todolist'
 import s from 'features/todolists/ui/TodolistsList/TodolistsList.module.css'
+import { AddItemForm } from 'common/components'
 
 export const TodolistsList: React.FC = () => {
   const todolists = useSelector<AppRootStateType, TodolistDomainType[]>((state) => state.todolists)

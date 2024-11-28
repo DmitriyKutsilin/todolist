@@ -38,10 +38,6 @@ export const AddItemForm = memo(({ addItem, label, disabled }: AddItemFormPropsT
 
   return (
     <div>
-      {/*<input className={error ? 'error' : ''}*/}
-      {/*       value={title}*/}
-      {/*       onChange={changeItemTitleHandler}*/}
-      {/*       onKeyDown={addItemOnKeyDownHandler}/>*/}
       <TextField
         size="small"
         error={!!error}
@@ -57,10 +53,6 @@ export const AddItemForm = memo(({ addItem, label, disabled }: AddItemFormPropsT
       <IconButton size="medium" color="primary" onClick={addItemHandler} disabled={disabled}>
         <AddCircleOutline fontSize="medium" />
       </IconButton>
-      {/*<Button title={'+'} onClick={addItemHandler}/>*/}
-      {/*{*/}
-      {/*    error && <div className={'error-message'}>{error}</div>*/}
-      {/*}*/}
     </div>
   )
 })

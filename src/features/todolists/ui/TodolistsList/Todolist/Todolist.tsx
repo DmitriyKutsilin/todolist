@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { memo } from 'react'
-import { AddItemForm } from 'components/AddItemForm/AddItemForm'
+import { AddItemForm } from 'common/components/AddItemForm/AddItemForm'
 import { TodolistDomainType } from 'features/todolists/model/todolistsSlice'
 import { createTaskTC } from 'features/todolists/model/tasksSlice'
 import { TodolistTitle } from 'features/todolists/ui/TodolistsList/Todolist/TodolistTitle/TodolistTitle'

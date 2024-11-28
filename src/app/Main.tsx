@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import Container from '@mui/material/Container/Container'
-import { AddItemForm } from 'components/AddItemForm/AddItemForm'
+import { AddItemForm } from 'common/components/AddItemForm/AddItemForm'
 import { TodolistsList } from 'features/todolists/ui/TodolistsList/TodolistsList'
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { selectIsLoggedIn } from 'features/Login/authSlice'

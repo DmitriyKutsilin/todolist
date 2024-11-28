@@ -1,6 +1,6 @@
 import React, { ChangeEvent, memo } from 'react'
 import Checkbox from '@mui/material/Checkbox/Checkbox'
-import { EditableSpan } from 'components/EditableSpan/EditableSpan'
+import { EditableSpan } from 'common/components/EditableSpan/EditableSpan'
 import IconButton from '@mui/material/IconButton/IconButton'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import ListItem from '@mui/material/ListItem/ListItem'

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { changeTodolistFilter, FilterType, TodolistDomainType } from 'features/todolists/model/todolistsSlice'
-import { ButtonWithMemo } from 'components/Button/ButtonWithMemo'
+import { ButtonWithMemo } from 'common/components/Button/ButtonWithMemo'
 import { useAppDispatch } from 'app/store'
 import s from 'features/todolists/ui/TodolistsList/Todolist/FilterTasksButtons/FilterTasksButtons.module.css'
 

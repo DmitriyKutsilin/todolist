@@ -4,7 +4,7 @@ import { Login } from 'features/Login/Login'
 import { TodolistsList } from 'features/todolists/ui/TodolistsList/TodolistsList'
 import React from 'react'
 import { PrivateRoutes } from './PrivateRoutes'
-import { Page404 } from 'components/Page404/Page404'
+import { Page404 } from 'common/components/Page404/Page404'
 
 export const PATH = {
   TODOLISTS: '/todolists',

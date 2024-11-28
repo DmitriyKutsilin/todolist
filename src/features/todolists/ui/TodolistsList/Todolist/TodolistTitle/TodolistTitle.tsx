@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { deleteTodolistTC, TodolistDomainType, updateTodolistTC } from 'features/todolists/model/todolistsSlice'
-import { EditableSpan } from 'components/EditableSpan/EditableSpan'
+import { EditableSpan } from 'common/components/EditableSpan/EditableSpan'
 import IconButton from '@mui/material/IconButton/IconButton'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useAppDispatch } from 'app/store'

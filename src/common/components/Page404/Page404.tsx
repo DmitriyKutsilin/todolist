@@ -1,4 +1,4 @@
-import s from './Page404.module.css'
+import s from 'common/components/Page404/Page404.module.css'
 
 export const Page404 = () => {
   return (

@@ -7,7 +7,6 @@ import { selectIsLoggedIn } from 'features/Login/authSlice'
 import { createTodolistTC } from 'features/todolists/model/todolistsSlice'
 import { Navigate } from 'react-router-dom'
 import { PATH } from 'routes/router'
-import Grid from '@mui/material/Grid/Grid'
 import { AddItemForm } from 'common/components'
 
 export const Main = () => {
@@ -27,9 +26,9 @@ export const Main = () => {
       <div className={'addItemForm'}>
         <AddItemForm addItem={addTodolist} label={'New todolist'} />
       </div>
-      <Grid container spacing={4}>
+      <div className="MainContainer">
         <TodolistsList />
-      </Grid>
+      </div>
     </Container>
   )
 }

@@ -54,6 +54,7 @@ export const logoutTC = (): AppThunk => async (dispatch) => {
       dispatch(setIsLoggedIn({ isLoggedIn: false }))
       dispatch(clearTodolistsData({}))
       dispatch(setAppStatus({ status: 'succeeded' }))
+      localStorage.removeItem('sn-token')
     } else {
       handleServerAppError(dispatch, res.data)
     }

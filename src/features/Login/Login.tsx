@@ -34,7 +34,7 @@ const validate = (values: any) => {
 
   if (!values.password) {
     errors.password = 'Required'
-  } else if (values.password.length < 6) {
+  } else if (values.password.length < 4) {
     errors.password = 'Password should be at least 6 characters'
   }
 

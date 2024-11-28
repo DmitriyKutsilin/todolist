@@ -18,6 +18,16 @@
   opacity: 0.5;
 }
 
+.MainContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 50px;
+  align-items: stretch;
+  margin: 0 50px;
+}
+
 .todolistsFlexbox {
   display: flex;
   flex-direction: row;
@@ -50,13 +60,3 @@
   padding: 15px;
   height: 100%;
 }
-
-/*ul {*/
-/*  list-style-type: none;*/
-/*  padding: 0;*/
-/*}*/
-
-/*ul > li {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/

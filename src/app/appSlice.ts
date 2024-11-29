@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
-import { setIsLoggedIn } from 'features/Login/authSlice'
+import { setIsLoggedIn } from 'features/auth/model/authSlice'
 import { authApi } from 'features/auth/api/authApi'
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'

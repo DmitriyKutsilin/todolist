@@ -4,7 +4,7 @@ import { todolistsReducer, todolistsSlice } from 'features/todolists/model/todol
 import { ThunkAction } from 'redux-thunk'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { appReducer, appSlice } from 'app/appSlice'
-import { authReducer, authSlice } from 'features/Login/authSlice'
+import { authReducer, authSlice } from 'features/auth/model/authSlice'
 import { configureStore } from '@reduxjs/toolkit'
 
 export const store = configureStore({

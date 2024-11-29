@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from 'app/App'
-import { Login } from 'features/Login/Login'
+import { Login } from 'features/auth/ui/Login'
 import React from 'react'
 import { Page404 } from 'common/components/Page404/Page404'
 import { Main } from 'app/Main'

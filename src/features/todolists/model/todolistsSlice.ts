@@ -1,5 +1,5 @@
 import { RequestStatusType, setAppStatus } from 'app/appSlice'
-import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
+import { handleServerAppError, handleServerNetworkError } from 'common/utils/error-utils'
 import { changeTaskEntityStatus, fetchTasksTC } from 'features/todolists/model/tasksSlice'
 import { AppThunk } from 'app/store'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'

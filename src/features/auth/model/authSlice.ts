@@ -1,5 +1,5 @@
 import { setAppStatus } from 'app/appSlice'
-import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
+import { handleServerAppError, handleServerNetworkError } from 'common/utils/error-utils'
 import { AxiosError } from 'axios'
 import { clearTodolistsData } from 'features/todolists/model/todolistsSlice'
 import { createSlice } from '@reduxjs/toolkit'

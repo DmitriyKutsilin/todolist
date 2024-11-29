@@ -1,6 +1,6 @@
 import { AppThunk } from 'app/store'
 import { RequestStatusType, setAppError, setAppStatus } from 'app/appSlice'
-import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
+import { handleServerAppError, handleServerNetworkError } from 'common/utils/error-utils'
 import axios, { AxiosError } from 'axios'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { addTodolist, clearTodolistsData, removeTodolist } from 'features/todolists/model/todolistsSlice'

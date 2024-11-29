@@ -6,13 +6,13 @@ import ListItem from '@mui/material/ListItem/ListItem'
 import { TaskStatuses } from 'api/todolist-api'
 import { deleteTaskTC, TaskDomainType, updateTaskTC } from 'features/todolists/model/tasksSlice'
 import { useAppDispatch } from 'app/store'
-import { TodolistDomainType } from 'features/todolists/model/todolistsSlice'
+import { TodolistDomain } from 'features/todolists/model/todolistsSlice'
 import s from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task.module.css'
 import { EditableSpan } from 'common/components'
 
 type TaskPropsType = {
   task: TaskDomainType
-  todolist: TodolistDomainType
+  todolist: TodolistDomain
 }
 
 export const Task = memo(({ task, todolist }: TaskPropsType) => {

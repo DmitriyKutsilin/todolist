@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { useEffect, useMemo } from 'react'
-import { TodolistDomainType } from 'features/todolists/model/todolistsSlice'
+import { TodolistDomain } from 'features/todolists/model/todolistsSlice'
 import { TaskStatuses } from 'api/todolist-api'
 import { AppRootStateType, useAppDispatch } from 'app/store'
 import { useSelector } from 'react-redux'
@@ -10,7 +10,7 @@ import { Task } from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Ta
 import List from '@mui/material/List/List'
 
 type Props = {
-  todolist: TodolistDomainType
+  todolist: TodolistDomain
 }
 export const Tasks = ({ todolist }: Props) => {
   const tasks = useSelector<AppRootStateType, TasksStateType>((state) => state.tasks)

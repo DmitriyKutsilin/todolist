@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react'
-import { changeTodolistFilter, FilterType, TodolistDomainType } from 'features/todolists/model/todolistsSlice'
+import { changeTodolistFilter, FilterType, TodolistDomain } from 'features/todolists/model/todolistsSlice'
 import { useAppDispatch } from 'app/store'
 import s from 'features/todolists/ui/TodolistsList/Todolist/FilterTasksButtons/FilterTasksButtons.module.css'
 import { ButtonWithMemo } from 'common/components'
 
 type Props = {
-  todolist: TodolistDomainType
+  todolist: TodolistDomain
 }
 export const FilterTasksButtons = ({ todolist }: Props) => {
   const { id, filter, entityStatus } = todolist

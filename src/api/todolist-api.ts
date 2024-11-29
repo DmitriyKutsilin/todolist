@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
+import { BaseResponse } from 'common/types'
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -14,32 +15,6 @@ instance.interceptors.request.use(function (config) {
 
 //API
 export const todolistAPI = {
-  getTodolists() {
-    return instance.get<TodolistType[]>('todo-lists')
-  },
-  createTodolist(title: string) {
-    return instance.post<
-      BaseResponse<{ item: TodolistType }>,
-      AxiosResponse<
-        BaseResponse<{
-          item: TodolistType
-        }>
-      >,
-      { title: string }
-    >('todo-lists', { title })
-  },
-  updateTodolist(todolistId: string, title: string) {
-    return instance.put<
-      BaseResponse,
-      AxiosResponse<BaseResponse>,
-      {
-        title: string
-      }
-    >(`todo-lists/${todolistId}`, { title })
-  },
-  deleteTodolist(todolistId: string) {
-    return instance.delete<BaseResponse>(`todo-lists/${todolistId}`)
-  },
   getTasks(todolistId: string) {
     return instance.get<GetTasksResponse>(`todo-lists/${todolistId}/tasks`)
   },
@@ -90,13 +65,6 @@ export enum Result_Code {
   ERROR = 1,
   RECAPTCHA_ERROR = 10,
 }
-
-export type TodolistType = {
-  id: string
-  title: string
-  addedDate: string
-  order: number
-}
 export type TaskType = {
   description: string
   title: string
@@ -121,23 +89,4 @@ type GetTasksResponse = {
   error: string | null
   totalCount: number
   items: TaskType[]
-}
-
-//удалить
-type FieldErrorType = {
-  error: string
-  field: string
-}
-//удалить
-type BaseResponse<T = {}> = {
-  resultCode: number
-  fieldsErrors: FieldErrorType[]
-  messages: string[]
-  data: T
-}
-//удалить
-type UserAuthResponse = {
-  id: number
-  email: string
-  login: string
 }

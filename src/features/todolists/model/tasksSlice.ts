@@ -3,12 +3,10 @@ import { RequestStatusType, setAppError, setAppStatus } from 'app/appSlice'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import axios, { AxiosError } from 'axios'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { addTodolist, clearTodolistsData, removeTodolist, setTodolists } from 'features/todolists/model/todolistsSlice'
-import { ResultCode, TaskPriorities, TaskStatuses } from 'common/enums'
+import { addTodolist, clearTodolistsData, removeTodolist } from 'features/todolists/model/todolistsSlice'
+import { ResultCode } from 'common/enums'
 import { Task, UpdateTaskDomainModel, UpdateTaskModel } from '../api/tasksApi.types'
 import { tasksApi } from 'features/todolists/api/tasksApi'
-
-const initialState: TasksStateType = {}
 
 export const tasksSlice = createSlice({
   name: 'tasks',

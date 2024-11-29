@@ -12,7 +12,6 @@ type Props = {
 export const EditableSpan = memo(({ value, onChange, className, disabled }: Props) => {
   const [editMode, setEditMode] = useState(false)
   const [title, setTitle] = useState(value)
-  // const [error, setError] = useState<string | null>(null)
 
   const changeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value)
@@ -43,10 +42,6 @@ export const EditableSpan = memo(({ value, onChange, className, disabled }: Prop
       {editMode ? (
         <>
           <TextField
-            // className={error ? 'error' : ''}
-
-            // inputProps={{size: title.length}}
-            // sx={{maxWidth: 'fit-content', overflow: "none"}}
             variant="standard"
             value={title}
             onBlur={deactivateEditMode}
@@ -54,9 +49,6 @@ export const EditableSpan = memo(({ value, onChange, className, disabled }: Prop
             onKeyDown={onKeyDownHandler}
             autoFocus
           />
-          {/*{*/}
-          {/*    error && <div className={'error-message'}>{error}</div>*/}
-          {/*}*/}
         </>
       ) : (
         <span className={className} style={disabled ? { opacity: 0.5 } : {}} onDoubleClick={activateEditMode}>

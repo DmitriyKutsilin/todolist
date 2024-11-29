@@ -51,7 +51,6 @@ export const tasksSlice = createSlice({
         taskId: string
       }>,
     ) => {
-      //TODO: посмотреть работу entityStatus отдельно и совместно при удалении тудулиста, может оставить один вариант
       const tasks = state[action.payload.todolistId]
 
       const index = tasks.findIndex((t) => t.id === action.payload.taskId)
@@ -59,26 +58,6 @@ export const tasksSlice = createSlice({
         tasks[index].entityStatus = action.payload.entityStatus
       }
     },
-    // changeTaskEntityStatus: (
-    //   state,
-    //   action: PayloadAction<{
-    //     entityStatus: RequestStatusType
-    //     todolistId: string
-    //     taskId?: string
-    //   }>,
-    // ) => {
-    //   //TODO: посмотреть работу entityStatus отдельно и совместно при удалении тудулиста, может оставить один вариант
-    //   const tasks = state[action.payload.todolistId]
-    //
-    //   if (action.payload.taskId) {
-    //     const index = tasks.findIndex((t) => t.id === action.payload.taskId)
-    //     if (index !== -1) {
-    //       tasks[index].entityStatus = action.payload.entityStatus
-    //     }
-    //   } else {
-    //     tasks.forEach((t) => (t.entityStatus = action.payload.entityStatus))
-    //   }
-    // },
   },
   extraReducers: (builder) => {
     builder
@@ -94,8 +73,6 @@ export const tasksSlice = createSlice({
       //   })
       // })
       .addCase(clearTodolistsData, (state, action) => {
-        // state = tasksSlice.getInitialState()
-        // state = {} as TasksStateType
         return {}
       })
   },
@@ -103,77 +80,6 @@ export const tasksSlice = createSlice({
 
 export const tasksReducer = tasksSlice.reducer
 export const { setTasks, updateTask, addTask, removeTask, changeTaskEntityStatus } = tasksSlice.actions
-
-export const _tasksReducer = (state: TasksStateType = initialState, action: any): TasksStateType => {
-  switch (action.type) {
-    case 'SET-TASKS':
-      return {
-        ...state,
-        [action.payload.todolistId]: action.payload.tasks.map((tl: any) => ({ ...tl, entityStatus: 'idle' })),
-      }
-    case 'ADD-TASK':
-      return {
-        ...state,
-        [action.payload.task.todoListId]: [
-          { ...action.payload.task, entityStatus: 'idle' },
-          ...state[action.payload.task.todoListId],
-        ],
-      }
-    case 'UPDATE-TASK':
-      return {
-        ...state,
-        [action.payload.task.todoListId]: state[action.payload.task.todoListId].map((task) =>
-          task.id === action.payload.task.id ? { ...task, ...action.payload.task } : task,
-        ),
-      }
-    case 'CHANGE-TASK-ENTITY-STATUS':
-      return action.payload.taskId
-        ? {
-            ...state,
-            [action.payload.todolistId]: state[action.payload.todolistId].map((t) =>
-              t.id === action.payload.taskId
-                ? {
-                    ...t,
-                    entityStatus: action.payload.entityStatus,
-                  }
-                : t,
-            ),
-          }
-        : {
-            ...state,
-            [action.payload.todolistId]: state[action.payload.todolistId].map((t) => ({
-              ...t,
-              entityStatus: action.payload.entityStatus,
-            })),
-          }
-    case 'SET-TODOLISTS': {
-      const stateCopy = { ...state }
-      action.payload.todolists.forEach((tl: any) => {
-        stateCopy[tl.id] = []
-      })
-      return stateCopy
-    }
-    case 'ADD-TODOLIST':
-      return { ...state, [action.payload.todolist.id]: [] }
-    case 'REMOVE-TODOLIST': {
-      const stateCopy = { ...state }
-      delete stateCopy[action.payload.id]
-      return stateCopy
-    }
-    case 'CLEAR-TODOLISTS-DATA':
-      return {}
-    default:
-      return state
-  }
-}
-
-//ACTION CREATORS
-// export const addTaskAC = (task: TaskType) => ({ type: 'ADD-TASK', payload: { task } }) as const
-// export const updateTaskAC = (task: TaskType) => ({ type: 'UPDATE-TASK', payload: { task } }) as const
-// export const setTasksAC = (todolistId: string, tasks: TaskType[]) =>
-//   ({ type: 'SET-TASKS', payload: { todolistId, tasks } }) as const
-// export const changeTaskEntityStatusAC = (entityStatus: RequestStatusType, todolistId: string, taskId?: string) =>
-//   ({ type: 'CHANGE-TASK-ENTITY-STATUS', payload: { todolistId, taskId, entityStatus } }) as const
 
 //THUNKS
 export const fetchTasksTC =

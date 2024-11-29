@@ -7,8 +7,6 @@ import { todolistsApi } from '../api/todolistsApi'
 import { Todolist } from '../api/todolistsApi.types'
 import { ResultCode } from 'common/enums'
 
-const initialState: TodolistDomain[] = []
-
 export const todolistsSlice = createSlice({
   name: 'todolists',
   initialState: [] as TodolistDomain[],
@@ -105,7 +103,7 @@ export const deleteTodolistTC =
         tasks.forEach((t) =>
           dispatch(
             changeTaskEntityStatus({
-              entityStatus: 'loading',
+              entityStatus: 'failed',
               todolistId: id,
               taskId: t.id,
             }),
@@ -153,7 +151,3 @@ export const updateTodolistTC =
 //TYPES
 export type FilterType = 'all' | 'active' | 'completed'
 export type TodolistDomain = Todolist & { filter: FilterType; entityStatus: RequestStatusType }
-// export type RemoveTodolistActionType = ReturnType<typeof removeTodolistAC>
-// export type AddTodolistActionType = ReturnType<typeof addTodolistAC>
-// export type SetTodolistsType = ReturnType<typeof setTodolistsAC>
-// export type ClearTodolistsDataActionType = ReturnType<typeof clearTodolistsDataAC>

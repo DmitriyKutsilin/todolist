@@ -1,4 +1,4 @@
-import { TaskPriorities, TaskStatuses } from 'api/todolist-api'
+import { TaskPriorities, TaskStatuses } from 'common/enums'
 import { addTask, removeTask, tasksReducer, TasksStateType, updateTask } from 'features/todolists/model/tasksSlice'
 import { addTodolist, removeTodolist } from 'features/todolists/model/todolistsSlice'
 

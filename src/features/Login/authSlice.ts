@@ -7,6 +7,7 @@ import { AppThunk } from 'app/store'
 import { LoginArgs } from 'features/auth/api/authApi.types'
 import { authApi } from 'features/auth/api/authApi'
 import { ResultCode } from 'common/enums'
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {

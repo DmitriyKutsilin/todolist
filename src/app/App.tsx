@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import './App.css'
 import { Outlet } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress'
-import { initializeAppTC } from 'app/appSlice'
+import { initializeAppTC, selectIsInitialized } from 'app/appSlice'
 import { ErrorSnackbar, Header } from 'common/components'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 
 //TODO: позиционирование прогрессбара
 function App() {
   const dispatch = useAppDispatch()
-  const isInitialized = useAppSelector<boolean>((state) => state.app.isInitialized)
+  const isInitialized = useAppSelector(selectIsInitialized)
 
   useEffect(() => {
     dispatch(initializeAppTC())

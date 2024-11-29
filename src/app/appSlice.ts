@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
-import { authAPI } from 'api/todolist-api'
 import { setIsLoggedIn } from 'features/Login/authSlice'
+import { authApi } from 'features/auth/api/authApi'
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
@@ -35,7 +35,7 @@ export const { setAppError, setAppStatus, setAppInitialized } = appSlice.actions
 export const { selectIsInitialized, selectAppStatus, selectAppError } = appSlice.selectors
 
 export const initializeAppTC = () => (dispatch: Dispatch) => {
-  authAPI.me().then((res) => {
+  authApi.me().then((res) => {
     if (res.data.resultCode === 0) {
       dispatch(setIsLoggedIn({ isLoggedIn: true }))
     } else {

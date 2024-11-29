@@ -1,4 +1,3 @@
-import { Result_Code } from 'api/todolist-api'
 import { setAppStatus } from 'app/appSlice'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import { AxiosError } from 'axios'
@@ -7,6 +6,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from 'app/store'
 import { LoginArgs } from 'features/auth/api/authApi.types'
 import { authApi } from 'features/auth/api/authApi'
+import { ResultCode } from 'common/enums'
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -32,7 +32,7 @@ export const loginTC =
     dispatch(setAppStatus({ status: 'loading' }))
     try {
       const res = await authApi.login(data)
-      if (res.data.resultCode === Result_Code.SUCCESS) {
+      if (res.data.resultCode === ResultCode.SUCCESS) {
         dispatch(setIsLoggedIn({ isLoggedIn: true }))
         dispatch(setAppStatus({ status: 'succeeded' }))
         localStorage.setItem('sn-token', res.data.data.token)
@@ -50,7 +50,7 @@ export const logoutTC = (): AppThunk => async (dispatch) => {
   dispatch(setAppStatus({ status: 'loading' }))
   try {
     const res = await authApi.logout()
-    if (res.data.resultCode === Result_Code.SUCCESS) {
+    if (res.data.resultCode === ResultCode.SUCCESS) {
       dispatch(setIsLoggedIn({ isLoggedIn: false }))
       dispatch(clearTodolistsData({}))
       dispatch(setAppStatus({ status: 'succeeded' }))

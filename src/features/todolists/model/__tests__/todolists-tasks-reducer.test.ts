@@ -1,9 +1,9 @@
 import { tasksReducer, TasksStateType } from 'features/todolists/model/tasksSlice'
-import { addTodolist, TodolistDomainType, todolistsReducer } from 'features/todolists/model/todolistsSlice'
+import { addTodolist, TodolistDomain, todolistsReducer } from 'features/todolists/model/todolistsSlice'
 
 test('ids should be equals', () => {
   const startTasksState: TasksStateType = {}
-  const startTodolistsState: Array<TodolistDomainType> = []
+  const startTodolistsState: Array<TodolistDomain> = []
 
   const newTodolist = {
     id: 'zdrg43',

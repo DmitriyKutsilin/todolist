@@ -1,4 +1,3 @@
-import { Result_Code } from 'api/todolist-api'
 import { RequestStatusType, setAppStatus } from 'app/appSlice'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import { changeTaskEntityStatus, fetchTasksTC } from 'features/todolists/model/tasksSlice'
@@ -6,6 +5,7 @@ import { AppThunk } from 'app/store'
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { todolistsApi } from '../api/todolistsApi'
 import { Todolist } from '../api/todolistsApi.types'
+import { ResultCode } from 'common/enums'
 
 const initialState: TodolistDomain[] = []
 
@@ -120,7 +120,7 @@ export const createTodolistTC =
     todolistsApi
       .createTodolist(title)
       .then((res) => {
-        if (res.data.resultCode === Result_Code.SUCCESS) {
+        if (res.data.resultCode === ResultCode.SUCCESS) {
           dispatch(addTodolist({ todolist: res.data.data.item }))
           dispatch(setAppStatus({ status: 'succeeded' }))
         } else {
@@ -138,7 +138,7 @@ export const updateTodolistTC =
     todolistsApi
       .updateTodolist({ title, id })
       .then((res) => {
-        if (res.data.resultCode === Result_Code.SUCCESS) {
+        if (res.data.resultCode === ResultCode.SUCCESS) {
           dispatch(changeTodolistTitle({ id, title }))
           dispatch(setAppStatus({ status: 'succeeded' }))
         } else {

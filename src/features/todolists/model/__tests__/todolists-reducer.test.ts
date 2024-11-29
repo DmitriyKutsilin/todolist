@@ -5,13 +5,13 @@ import {
   changeTodolistTitle,
   FilterType,
   removeTodolist,
-  TodolistDomainType,
+  TodolistDomain,
   todolistsReducer,
 } from 'features/todolists/model/todolistsSlice'
 
 let todolistId1: string
 let todolistId2: string
-let startState: TodolistDomainType[]
+let startState: TodolistDomain[]
 
 beforeEach(() => {
   todolistId1 = v1()

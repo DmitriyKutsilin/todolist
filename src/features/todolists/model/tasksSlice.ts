@@ -1,10 +1,11 @@
-import { Result_Code, TaskPriorities, TaskStatuses, TaskType, todolistAPI, UpdateTaskModelType } from 'api/todolist-api'
+import { TaskType, todolistAPI, UpdateTaskModelType } from 'api/todolist-api'
 import { AppThunk } from 'app/store'
 import { RequestStatusType, setAppError, setAppStatus } from 'app/appSlice'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import axios, { AxiosError } from 'axios'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { addTodolist, clearTodolistsData, removeTodolist, setTodolists } from 'features/todolists/model/todolistsSlice'
+import { ResultCode, TaskPriorities, TaskStatuses } from 'common/enums'
 
 const initialState: TasksStateType = {}
 
@@ -251,7 +252,7 @@ export const updateTaskTC =
       }
 
       const res = await todolistAPI.updateTask(todolistId, id, apiModel)
-      if (res.data.resultCode === Result_Code.SUCCESS) {
+      if (res.data.resultCode === ResultCode.SUCCESS) {
         dispatch(updateTask({ todolistId, id, model: apiModel }))
         dispatch(setAppStatus({ status: 'succeeded' }))
       } else {

@@ -2,12 +2,12 @@
 import * as React from 'react'
 import { useEffect, useMemo } from 'react'
 import { TodolistDomain } from 'features/todolists/model/todolistsSlice'
-import { TaskStatuses } from 'api/todolist-api'
 import { AppRootStateType, useAppDispatch } from 'app/store'
 import { useSelector } from 'react-redux'
 import { fetchTasksTC, TasksStateType } from 'features/todolists/model/tasksSlice'
 import { Task } from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task'
 import List from '@mui/material/List/List'
+import { TaskStatuses } from 'common/enums'
 
 type Props = {
   todolist: TodolistDomain

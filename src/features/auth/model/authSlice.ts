@@ -53,7 +53,7 @@ export const logoutTC = (): AppThunk => async (dispatch) => {
     const res = await authApi.logout()
     if (res.data.resultCode === ResultCode.SUCCESS) {
       dispatch(setIsLoggedIn({ isLoggedIn: false }))
-      dispatch(clearTodolistsData({}))
+      dispatch(clearTodolistsData())
       dispatch(setAppStatus({ status: 'succeeded' }))
       localStorage.removeItem('sn-token')
     } else {

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
 import { setIsLoggedIn } from 'features/auth/model/authSlice'
 import { authApi } from 'features/auth/api/authApi'
@@ -12,17 +12,17 @@ export const appSlice = createSlice({
     status: 'idle' as RequestStatusType,
     error: null as string | null,
   },
-  reducers: {
-    setAppError: (state, action: PayloadAction<{ error: string | null }>) => {
+  reducers: (create) => ({
+    setAppError: create.reducer<{ error: string | null }>((state, action) => {
       state.error = action.payload.error
-    },
-    setAppStatus: (state, action: PayloadAction<{ status: RequestStatusType }>) => {
+    }),
+    setAppStatus: create.reducer<{ status: RequestStatusType }>((state, action) => {
       state.status = action.payload.status
-    },
-    setAppInitialized: (state, action: PayloadAction<{ isInitialized: boolean }>) => {
+    }),
+    setAppInitialized: create.reducer<{ isInitialized: boolean }>((state, action) => {
       state.isInitialized = action.payload.isInitialized
-    },
-  },
+    }),
+  }),
   selectors: {
     selectIsInitialized: (state) => state.isInitialized,
     selectAppError: (state) => state.error,

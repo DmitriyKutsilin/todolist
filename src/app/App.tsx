@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import './App.css'
-import { useAppDispatch, useAppSelector } from './store'
 import { Outlet } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress'
 import { initializeAppTC } from 'app/appSlice'
 import { ErrorSnackbar, Header } from 'common/components'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 
 //TODO: позиционирование прогрессбара
 function App() {

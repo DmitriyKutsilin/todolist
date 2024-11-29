@@ -8,8 +8,8 @@ import LinearProgress from '@mui/material/LinearProgress/LinearProgress'
 import AppBar from '@mui/material/AppBar/AppBar'
 import { logoutTC, selectIsLoggedIn } from 'features/auth/model/authSlice'
 import { selectAppStatus } from 'app/appSlice'
-import { useAppDispatch, useAppSelector } from 'app/store'
 import Switch from '@mui/material/Switch/Switch'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 
 export const Header = () => {
   const dispatch = useAppDispatch()

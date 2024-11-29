@@ -4,11 +4,11 @@ import IconButton from '@mui/material/IconButton/IconButton'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import ListItem from '@mui/material/ListItem/ListItem'
 import { deleteTaskTC, TaskDomainType, updateTaskTC } from 'features/todolists/model/tasksSlice'
-import { useAppDispatch } from 'app/store'
 import { TodolistDomain } from 'features/todolists/model/todolistsSlice'
 import s from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task.module.css'
 import { EditableSpan } from 'common/components'
 import { TaskStatuses } from 'common/enums'
+import { useAppDispatch } from 'common/hooks'
 
 type TaskPropsType = {
   task: TaskDomainType

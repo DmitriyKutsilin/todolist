@@ -1,9 +1,9 @@
 // @flow
 import * as React from 'react'
 import { changeTodolistFilter, FilterType, TodolistDomain } from 'features/todolists/model/todolistsSlice'
-import { useAppDispatch } from 'app/store'
 import s from 'features/todolists/ui/TodolistsList/Todolist/FilterTasksButtons/FilterTasksButtons.module.css'
 import { ButtonWithMemo } from 'common/components'
+import { useAppDispatch } from 'common/hooks'
 
 type Props = {
   todolist: TodolistDomain

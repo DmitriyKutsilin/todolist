@@ -6,8 +6,8 @@ import { createTaskTC } from 'features/todolists/model/tasksSlice'
 import { TodolistTitle } from 'features/todolists/ui/TodolistsList/Todolist/TodolistTitle/TodolistTitle'
 import { Tasks } from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Tasks'
 import { FilterTasksButtons } from 'features/todolists/ui/TodolistsList/Todolist/FilterTasksButtons/FilterTasksButtons'
-import { useAppDispatch } from 'app/store'
 import { AddItemForm } from 'common/components'
+import { useAppDispatch } from 'common/hooks'
 
 type TodolistProps = {
   todolist: TodolistDomain

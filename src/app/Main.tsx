@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from 'app/store'
 import { selectIsLoggedIn } from 'features/Login/authSlice'
 import { createTodolistTC } from 'features/todolists/model/todolistsSlice'
 import { Navigate } from 'react-router-dom'
-import { PATH } from 'routes/router'
+import { PATH } from 'common/router/router'
 import { AddItemForm } from 'common/components'
 
 export const Main = () => {

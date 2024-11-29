@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { useAppDispatch, useAppSelector } from 'app/store'
-import { loginTC } from 'features/auth/model/authSlice'
+import { loginTC, selectIsLoggedIn } from 'features/auth/model/authSlice'
 import { Navigate } from 'react-router-dom'
 
 type ErrorsType = {
@@ -36,7 +36,7 @@ const validate = (values: any) => {
 
 export const Login = () => {
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector<boolean>((state) => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +46,6 @@ export const Login = () => {
     },
     validate,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values))
       dispatch(loginTC(values))
       formik.resetForm()
     },

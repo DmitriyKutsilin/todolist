@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { TodolistDomain } from 'features/todolists/model/todolistsSlice'
-import { fetchTasksTC, selectTasks } from 'features/todolists/model/tasksSlice'
+import { selectTasks } from 'features/todolists/model/tasksSlice'
 import { Task } from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task'
 import List from '@mui/material/List/List'
 import { TaskStatuses } from 'common/enums'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useAppSelector } from 'common/hooks'
 
 type Props = {
   todolist: TodolistDomain
@@ -14,11 +14,11 @@ type Props = {
 export const Tasks = ({ todolist }: Props) => {
   const tasks = useAppSelector(selectTasks)
 
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(fetchTasksTC(todolist.id))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(fetchTasksTC(todolist.id))
+  // }, [])
 
   let todolistTasks = tasks[todolist.id]
 

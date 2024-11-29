@@ -13,10 +13,12 @@ export const authSlice = createSlice({
   initialState: {
     isLoggedIn: false,
   },
-  reducers: {
-    setIsLoggedIn: (state, action: PayloadAction<{ isLoggedIn: boolean }>) => {
-      state.isLoggedIn = action.payload.isLoggedIn
-    },
+  reducers: (create) => {
+    return {
+      setIsLoggedIn: create.reducer<{ isLoggedIn: boolean }>((state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      }),
+    }
   },
   selectors: {
     selectIsLoggedIn: (state) => state.isLoggedIn,

@@ -4,6 +4,7 @@ let startState: AppInitialState
 
 beforeEach(() => {
   startState = {
+    themeMode: 'light',
     error: null,
     status: 'idle',
     isInitialized: false,

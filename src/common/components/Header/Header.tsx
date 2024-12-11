@@ -37,10 +37,10 @@ export const Header = () => {
               Logout
             </Button>
           )}
-          <Switch color={'default'} onChange={changeThemeMode} />
+          <Switch color={'primary'} onChange={changeThemeMode} />
         </div>
       </Toolbar>
-      {status === 'loading' && <LinearProgress />}
+      {status === 'loading' && <LinearProgress sx={{ position: 'fixed', top: '64px', width: '100%' }} />}
     </AppBar>
   )
 }

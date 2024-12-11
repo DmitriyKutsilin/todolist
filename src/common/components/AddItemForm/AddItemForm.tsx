@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { ChangeEvent, KeyboardEvent, memo, useState } from 'react'
 import IconButton from '@mui/material/IconButton/IconButton'
-import AddCircleOutline from '@mui/icons-material/AddCircleOutline'
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
 import TextField from '@mui/material/TextField/TextField'
 
 export type AddItemFormPropsType = {
@@ -37,7 +37,7 @@ export const AddItemForm = memo(({ addItem, label, disabled }: AddItemFormPropsT
   }
 
   return (
-    <div>
+    <div style={{ display: 'flex', alignItems: 'start', flexWrap: 'nowrap' }}>
       <TextField
         size="small"
         error={!!error}
@@ -49,9 +49,10 @@ export const AddItemForm = memo(({ addItem, label, disabled }: AddItemFormPropsT
         onChange={changeItemTitleHandler}
         onKeyDown={addItemOnKeyDownHandler}
         disabled={disabled}
+        fullWidth
       />
       <IconButton size="medium" color="primary" onClick={addItemHandler} disabled={disabled}>
-        <AddCircleOutline fontSize="medium" />
+        <AddCircleRoundedIcon fontSize="medium" />
       </IconButton>
     </div>
   )

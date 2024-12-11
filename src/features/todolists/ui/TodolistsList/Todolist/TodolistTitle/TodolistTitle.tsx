@@ -26,6 +26,12 @@ export const TodolistTitle = ({ todolist }: Props) => {
   return (
     <div className={s.titleContainer}>
       <EditableSpan
+        sx={{
+          '& .MuiInputBase-input': {
+            fontSize: '1.5rem',
+            fontWeight: '600',
+          },
+        }}
         className={s.header}
         value={title}
         onChange={updateTodolistHandler}

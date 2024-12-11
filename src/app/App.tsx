@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { getTheme } from 'common/theme/theme'
 
-//TODO: позиционирование прогрессбара
 function App() {
   const dispatch = useAppDispatch()
   const isInitialized = useAppSelector(selectIsInitialized)

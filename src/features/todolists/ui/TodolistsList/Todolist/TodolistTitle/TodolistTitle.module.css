@@ -1,11 +1,13 @@
 .titleContainer {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .header {
     display: inline-block;
-    font-size: 22px;
-    font-weight: 500;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 600;
 }

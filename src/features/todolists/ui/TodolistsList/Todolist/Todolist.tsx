@@ -22,7 +22,7 @@ export const Todolist = memo(({ todolist }: TodolistProps) => {
   return (
     <div className={'todolist'}>
       <TodolistTitle todolist={todolist} />
-      <AddItemForm addItem={addTaskCallback} label={'New task'} disabled={todolist.entityStatus === 'loading'} />
+      <AddItemForm addItem={addTaskCallback} label={'Add task'} disabled={todolist.entityStatus === 'loading'} />
       <Tasks todolist={todolist} />
       <FilterTasksButtons todolist={todolist} />
     </div>

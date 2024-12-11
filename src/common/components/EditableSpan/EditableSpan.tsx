@@ -10,10 +10,10 @@ type Props = {
   onChange: (title: string) => void
   className?: string
   disabled?: boolean
-  multiline?: boolean
+  // multiline?: boolean
   sx?: SxProps<Theme>
 }
-export const EditableSpan = memo(({ value, onChange, className, disabled, sx, multiline }: Props) => {
+export const EditableSpan = memo(({ value, onChange, className, disabled, sx }: Props) => {
   const [editMode, setEditMode] = useState(false)
   const [title, setTitle] = useState(value)
   const [emptyTitleError, setEmptyTitleError] = useState(false)

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, memo, useCallback } from 'react'
+import React, { ChangeEvent, memo } from 'react'
 import Checkbox from '@mui/material/Checkbox/Checkbox'
 import IconButton from '@mui/material/IconButton/IconButton'
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded'
@@ -9,7 +9,6 @@ import s from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task.modu
 import { EditableSpan } from 'common/components'
 import { TaskStatuses } from 'common/enums'
 import { useAppDispatch } from 'common/hooks'
-import Divider from '@mui/material/Divider/Divider'
 
 type TaskPropsType = {
   task: TaskDomainType
@@ -56,7 +55,6 @@ export const Task = memo(({ task, todolist }: TaskPropsType) => {
             disabled={task.entityStatus === 'loading'}
           />
           <EditableSpan
-            multiline={true}
             className={s.editableSpan}
             value={task.title}
             onChange={changeTaskTitleHandler}

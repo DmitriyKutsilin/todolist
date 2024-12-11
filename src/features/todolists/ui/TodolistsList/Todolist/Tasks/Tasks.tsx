@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { useMemo } from 'react'
 import { TodolistDomain } from 'features/todolists/model/todolistsSlice'
-import { selectTasks, TaskDomainType } from 'features/todolists/model/tasksSlice'
+import { selectTasks } from 'features/todolists/model/tasksSlice'
 import { Task } from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task'
 import List from '@mui/material/List/List'
 import { TaskStatuses } from 'common/enums'

@@ -7,7 +7,8 @@ beforeEach(() => {
     themeMode: 'light',
     error: null,
     status: 'idle',
-    isInitialized: false,
+    // isInitialized: false,
+    isLoggedIn: false,
   }
 })
 

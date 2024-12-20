@@ -3,9 +3,11 @@ import { handleServerAppError, handleServerNetworkError } from 'common/utils/err
 import { changeTaskEntityStatus, fetchTasksTC } from 'features/todolists/model/tasksSlice'
 import { AppThunk } from 'app/store'
 import { createSlice } from '@reduxjs/toolkit'
-import { todolistsApi } from '../api/todolistsApi'
+import { _todolistsApi } from '../api/todolistsApi'
 import { Todolist } from '../api/todolistsApi.types'
 import { ResultCode } from 'common/enums'
+
+//TODO: удалить всё кроме типов, удалить и в сторе
 
 export const todolistsSlice = createSlice({
   name: 'todolists',
@@ -73,7 +75,7 @@ export const {
 //THUNKS
 export const fetchTodolistsTC = (): AppThunk => (dispatch) => {
   dispatch(setAppStatus({ status: 'loading' }))
-  todolistsApi
+  _todolistsApi
     .getTodolists()
     .then((res) => {
       dispatch(setTodolists({ todolists: res.data }))
@@ -98,7 +100,7 @@ export const deleteTodolistTC =
 
     tasks.forEach((t) => dispatch(changeTaskEntityStatus({ entityStatus: 'loading', todolistId: id, taskId: t.id })))
 
-    todolistsApi
+    _todolistsApi
       .deleteTodolist(id)
       .then((res) => {
         dispatch(removeTodolist({ id }))
@@ -121,7 +123,7 @@ export const createTodolistTC =
   (title: string): AppThunk =>
   (dispatch) => {
     dispatch(setAppStatus({ status: 'loading' }))
-    todolistsApi
+    _todolistsApi
       .createTodolist(title)
       .then((res) => {
         if (res.data.resultCode === ResultCode.SUCCESS) {
@@ -139,7 +141,7 @@ export const updateTodolistTC =
   (id: string, title: string): AppThunk =>
   (dispatch) => {
     dispatch(setAppStatus({ status: 'loading' }))
-    todolistsApi
+    _todolistsApi
       .updateTodolist({ title, id })
       .then((res) => {
         if (res.data.resultCode === ResultCode.SUCCESS) {

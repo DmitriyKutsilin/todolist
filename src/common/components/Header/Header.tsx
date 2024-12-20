@@ -6,10 +6,12 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Button from '@mui/material/Button/Button'
 import LinearProgress from '@mui/material/LinearProgress/LinearProgress'
 import AppBar from '@mui/material/AppBar/AppBar'
-import { logoutTC, selectIsLoggedIn } from 'features/auth/model/authSlice'
-import { selectAppStatus, selectThemeMode, setThemeMode } from 'app/appSlice'
+import { selectAppStatus, selectIsLoggedIn, selectThemeMode, setIsLoggedIn, setThemeMode } from 'app/appSlice'
 import Switch from '@mui/material/Switch/Switch'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useLogoutMutation } from 'features/auth/api/authApi'
+import { ResultCode } from 'common/enums'
+import { baseApi } from 'app/baseApi'
 
 export const Header = () => {
   const dispatch = useAppDispatch()
@@ -17,12 +19,24 @@ export const Header = () => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const themeMode = useAppSelector(selectThemeMode)
 
+  const [logout] = useLogoutMutation()
+
   const changeThemeMode = () => {
     dispatch(setThemeMode({ themeMode: themeMode === 'light' ? 'dark' : 'light' }))
   }
 
-  const logout = () => {
-    dispatch(logoutTC())
+  const logoutHandler = () => {
+    logout().then((res) => {
+      if (res.data?.resultCode === ResultCode.SUCCESS) {
+        dispatch(setIsLoggedIn({ isLoggedIn: false }))
+        localStorage.removeItem('sn-token')
+        dispatch(baseApi.util.resetApiState())
+      }
+    })
+    // .then(() => {
+    //   dispatch(baseApi.util.invalidateTags(['Todolist']))
+    // })
+    // dispatch(logoutTC())
   }
 
   return (
@@ -33,7 +47,7 @@ export const Header = () => {
         </IconButton>
         <div>
           {isLoggedIn && (
-            <Button color="inherit" onClick={logout}>
+            <Button color="inherit" onClick={logoutHandler}>
               Logout
             </Button>
           )}

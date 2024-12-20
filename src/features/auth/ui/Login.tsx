@@ -8,9 +8,12 @@ import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
-import { loginTC, selectIsLoggedIn } from 'features/auth/model/authSlice'
+// import { loginTC, selectIsLoggedIn } from 'features/auth/model/authSlice'
 import { Navigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { selectIsLoggedIn, setIsLoggedIn } from 'app/appSlice'
+import { useLoginMutation } from 'features/auth/api/authApi'
+import { ResultCode } from 'common/enums'
 
 type ErrorsType = {
   email?: string
@@ -38,6 +41,8 @@ export const Login = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
 
+  const [login, { data }] = useLoginMutation()
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -46,8 +51,19 @@ export const Login = () => {
     },
     validate,
     onSubmit: (values) => {
-      dispatch(loginTC(values))
-      formik.resetForm()
+      //TODO: посмотреть нужно ли диспатчить appStatus и посмотреть, когда ресетать форму
+
+      // dispatch(loginTC(values))
+      login(values)
+        .then((res) => {
+          if (res.data?.resultCode === ResultCode.SUCCESS) {
+            dispatch(setIsLoggedIn({ isLoggedIn: true }))
+            localStorage.setItem('sn-token', res.data.data.token)
+          }
+        })
+        .then(() => {
+          // formik.resetForm()
+        })
     },
   })
 

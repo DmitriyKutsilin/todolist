@@ -2,19 +2,22 @@
 import * as React from 'react'
 import Container from '@mui/material/Container/Container'
 import { TodolistsList } from 'features/todolists/ui/TodolistsList/TodolistsList'
-import { selectIsLoggedIn } from 'features/auth/model/authSlice'
 import { createTodolistTC } from 'features/todolists/model/todolistsSlice'
 import { Navigate } from 'react-router-dom'
 import { PATH } from 'common/router/router'
 import { AddItemForm } from 'common/components'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useCreateTodolistMutation } from 'features/todolists/api/todolistsApi'
+import { selectIsLoggedIn } from 'app/appSlice'
 
 export const Main = () => {
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
+  const [createTodolist] = useCreateTodolistMutation()
 
   const addTodolist = (title: string) => {
-    dispatch(createTodolistTC(title))
+    // dispatch(createTodolistTC(title))
+    createTodolist(title)
   }
 
   if (!isLoggedIn) {

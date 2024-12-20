@@ -4,6 +4,7 @@ import { changeTodolistFilter, FilterType, TodolistDomain } from 'features/todol
 import s from 'features/todolists/ui/TodolistsList/Todolist/FilterTasksButtons/FilterTasksButtons.module.css'
 import { ButtonWithMemo } from 'common/components'
 import { useAppDispatch } from 'common/hooks'
+import { todolistsApi } from 'features/todolists/api/todolistsApi'
 
 type Props = {
   todolist: TodolistDomain
@@ -13,7 +14,16 @@ export const FilterTasksButtons = ({ todolist }: Props) => {
   const dispatch = useAppDispatch()
 
   const changeFilterTasksHandler = (id: string, filter: FilterType) => {
-    dispatch(changeTodolistFilter({ id, filter }))
+    // dispatch(changeTodolistFilter({ id, filter }))
+
+    dispatch(
+      todolistsApi.util.updateQueryData('getTodolists', undefined, (state) => {
+        const todolist = state.find((tl) => tl.id === id)
+        if (todolist) {
+          todolist.filter = filter
+        }
+      }),
+    )
   }
 
   return (

@@ -8,6 +8,7 @@ import { Tasks } from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Tasks'
 import { FilterTasksButtons } from 'features/todolists/ui/TodolistsList/Todolist/FilterTasksButtons/FilterTasksButtons'
 import { AddItemForm } from 'common/components'
 import { useAppDispatch } from 'common/hooks'
+import { useCreateTaskMutation } from 'features/todolists/api/tasksApi'
 
 type TodolistProps = {
   todolist: TodolistDomain
@@ -15,8 +16,11 @@ type TodolistProps = {
 export const Todolist = memo(({ todolist }: TodolistProps) => {
   const dispatch = useAppDispatch()
 
+  const [createTask] = useCreateTaskMutation()
+
   const addTaskCallback = (title: string) => {
-    dispatch(createTaskTC(todolist.id, title))
+    // dispatch(createTaskTC(todolist.id, title))
+    createTask({ todolistId: todolist.id, title })
   }
 
   return (

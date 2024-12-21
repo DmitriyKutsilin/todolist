@@ -6,7 +6,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { addTodolist, clearTodolistsData, removeTodolist } from 'features/todolists/model/todolistsSlice'
 import { ResultCode } from 'common/enums'
 import { Task, UpdateTaskDomainModel, UpdateTaskModel } from '../api/tasksApi.types'
-import { tasksApi } from 'features/todolists/api/tasksApi'
+import { _tasksApi } from 'features/todolists/api/tasksApi'
 
 export const tasksSlice = createSlice({
   name: 'tasks',
@@ -78,7 +78,7 @@ export const fetchTasksTC =
   (todolistId: string): AppThunk =>
   (dispatch) => {
     dispatch(setAppStatus({ status: 'loading' }))
-    tasksApi
+    _tasksApi
       .getTasks(todolistId)
       .then((res) => {
         if (!res.data.error) {
@@ -98,7 +98,7 @@ export const deleteTaskTC =
   (dispatch) => {
     dispatch(setAppStatus({ status: 'loading' }))
     dispatch(changeTaskEntityStatus({ entityStatus: 'loading', todolistId, taskId: id }))
-    tasksApi
+    _tasksApi
       .deleteTask({ todolistId, id })
       .then((res) => {
         dispatch(removeTask({ todolistId, id }))
@@ -113,7 +113,7 @@ export const createTaskTC =
   (todolistId: string, title: string): AppThunk =>
   (dispatch) => {
     dispatch(setAppStatus({ status: 'loading' }))
-    tasksApi
+    _tasksApi
       .createTask({ todolistId, title })
       .then((res) => {
         if (res.data.resultCode === 0) {
@@ -150,7 +150,7 @@ export const updateTaskTC =
         ...domainModel,
       }
 
-      const res = await tasksApi.updateTask({ todolistId, id, model: apiModel })
+      const res = await _tasksApi.updateTask({ todolistId, id, model: apiModel })
       if (res.data.resultCode === ResultCode.SUCCESS) {
         dispatch(updateTask({ todolistId, id, model: apiModel }))
         dispatch(setAppStatus({ status: 'succeeded' }))
@@ -165,6 +165,7 @@ export const updateTaskTC =
   }
 
 //TYPES
+
 export type TaskDomainType = Task & { entityStatus: RequestStatusType }
 export type TasksStateType = {
   [key: string]: TaskDomainType[]

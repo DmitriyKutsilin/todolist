@@ -2,11 +2,12 @@
 import * as React from 'react'
 import { useEffect, useMemo } from 'react'
 import { TodolistDomain } from 'features/todolists/model/todolistsSlice'
-import { fetchTasksTC, selectTasks } from 'features/todolists/model/tasksSlice'
+import { TaskDomainType, fetchTasksTC, selectTasks } from 'features/todolists/model/tasksSlice'
 import { Task } from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task'
 import List from '@mui/material/List/List'
 import { TaskStatuses } from 'common/enums'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useGetTasksQuery } from 'features/todolists/api/tasksApi'
 
 type Props = {
   todolist: TodolistDomain
@@ -14,21 +15,24 @@ type Props = {
 export const Tasks = ({ todolist }: Props) => {
   const tasks = useAppSelector(selectTasks)
   const dispatch = useAppDispatch()
+  const { data } = useGetTasksQuery(todolist.id)
 
   //TODO: решить вопрос с подгрузкой тасков
-  useEffect(() => {
-    dispatch(fetchTasksTC(todolist.id))
-  }, [])
 
-  let todolistTasks = tasks[todolist.id]
+  // useEffect(() => {
+  //   dispatch(fetchTasksTC(todolist.id))
+  // }, [])
+
+  let todolistTasks = data?.items
+  console.log(todolistTasks)
   // let otherTasks = [] as TaskDomainType[]
 
   todolistTasks = useMemo(() => {
     if (todolist.filter === 'active') {
-      todolistTasks = todolistTasks.filter((t) => t.status === TaskStatuses.New)
+      todolistTasks = todolistTasks?.filter((t) => t.status === TaskStatuses.New)
     }
     if (todolist.filter === 'completed') {
-      todolistTasks = todolistTasks.filter((t) => t.status === TaskStatuses.Completed)
+      todolistTasks = todolistTasks?.filter((t) => t.status === TaskStatuses.Completed)
     }
     return todolistTasks
   }, [todolistTasks, todolist.filter])

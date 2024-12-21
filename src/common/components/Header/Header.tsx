@@ -26,16 +26,17 @@ export const Header = () => {
   }
 
   const logoutHandler = () => {
-    logout().then((res) => {
-      if (res.data?.resultCode === ResultCode.SUCCESS) {
-        dispatch(setIsLoggedIn({ isLoggedIn: false }))
-        localStorage.removeItem('sn-token')
-        dispatch(baseApi.util.resetApiState())
-      }
-    })
-    // .then(() => {
-    //   dispatch(baseApi.util.invalidateTags(['Todolist']))
-    // })
+    logout()
+      .then((res) => {
+        if (res.data?.resultCode === ResultCode.SUCCESS) {
+          dispatch(setIsLoggedIn({ isLoggedIn: false }))
+          localStorage.removeItem('sn-token')
+          // dispatch(baseApi.util.resetApiState())
+        }
+      })
+      .then(() => {
+        dispatch(baseApi.util.invalidateTags(['Todolist', 'Task']))
+      })
     // dispatch(logoutTC())
   }
 

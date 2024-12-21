@@ -20,11 +20,13 @@ export type UpdateTaskModel = {
   startDate: string
   deadline: string
 }
-export type GetTasksResponse = {
+export type GetTasksResponse<T = Task[]> = {
   error: string | null
   totalCount: number
-  items: Task[]
+  items: T
 }
+
+//TODO: Partial util для типа
 export type UpdateTaskDomainModel = {
   title?: string
   description?: string

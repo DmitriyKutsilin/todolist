@@ -3,12 +3,13 @@ import Checkbox from '@mui/material/Checkbox/Checkbox'
 import IconButton from '@mui/material/IconButton/IconButton'
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded'
 import ListItem from '@mui/material/ListItem/ListItem'
-import { deleteTaskTC, TaskDomainType, updateTaskTC } from 'features/todolists/model/tasksSlice'
 import { TodolistDomain } from 'features/todolists/model/todolistsSlice'
 import s from 'features/todolists/ui/TodolistsList/Todolist/Tasks/Task/Task.module.css'
 import { EditableSpan } from 'common/components'
 import { TaskStatuses } from 'common/enums'
 import { useAppDispatch } from 'common/hooks'
+import { TaskDomainType, useDeleteTaskMutation, useUpdateTaskMutation } from 'features/todolists/api/tasksApi'
+import { createUpdatedModel } from 'features/todolists/lib/utils/createTaskUpdateModel'
 
 type TaskPropsType = {
   task: TaskDomainType
@@ -19,22 +20,26 @@ type TaskPropsType = {
 export const Task = memo(({ task, todolist }: TaskPropsType) => {
   const dispatch = useAppDispatch()
 
+  const [deleteTask] = useDeleteTaskMutation()
+  const [updateTask] = useUpdateTaskMutation()
+
   const removeTaskHandler = () => {
-    dispatch(deleteTaskTC(todolist.id, task.id))
+    // dispatch(deleteTaskTC(todolist.id, task.id))
+    deleteTask({ todolistId: todolist.id, id: task.id })
   }
 
   const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const status = e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New
-    dispatch(updateTaskTC(todolist.id, task.id, { status }))
+    // dispatch(updateTaskTC(todolist.id, task.id, { status }))
+    const model = createUpdatedModel(task, { status })
+    updateTask({ todolistId: todolist.id, id: task.id, model })
   }
 
   const changeTaskTitleHandler = (title: string) => {
-    // if (title.length === 0) {
-    //   dispatch(deleteTaskTC(todolist.id, task.id))
-    // } else {
-    //   dispatch(updateTaskTC(todolist.id, task.id, { title }))
-    // }
-    dispatch(updateTaskTC(todolist.id, task.id, { title }))
+    // dispatch(updateTaskTC(todolist.id, task.id, { title }))
+    const model = createUpdatedModel(task, { title })
+
+    updateTask({ todolistId: todolist.id, id: task.id, model })
   }
 
   return (
